@@ -1,0 +1,274 @@
+{
+  "info": {
+    "_postman_id": "c6d16111-fb55-477a-8225-a4a310233982",
+    "name": "urjc_mca_ddd_cqrs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "POST Create client",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"Inmaculada\",\n\t\"surname\": \"San Miguel\",\n\t\"country\": \"Spain\",\n\t\"city\": \"Arroyo de la Encomienda\",\n\t\"postalCode\": \"47012\",\n\t\"street\": \"Pza. Circular\",\n\t\"number\": \"103\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clients",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clients"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Get all clients",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/clients",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clients"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Get client by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/clients/f39f7092-9eb9-4b9e-bc1e-1f32cfc28cac",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clients",
+            "f39f7092-9eb9-4b9e-bc1e-1f32cfc28cac"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Create insurance",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"clientId\": \"341abbbb-a750-4e1c-9828-26b9a50d59ac\",\n    \"house\": {\n        \"registry\": \"REG-12345678902\",\n        \"country\": \"Spain\",\n        \"city\": \"Valladolid\",\n        \"postalCode\": \"47009\",\n        \"street\": \"C/Falsa\",\n        \"number\": \"123\"\n    },\n    \"coverages\":[\n    \t\"WINDOWS_COVERAGE\",\n    \t\"ELECTRONIC_DEVICES_COVERAGE\"\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/insurances",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "insurances"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Get all insurances",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/insurances",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "insurances"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Get insurance by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/insurances/f9c2df86-9359-41b7-b859-58cea959b204",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "insurances",
+            "f9c2df86-9359-41b7-b859-58cea959b204"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Create incidence",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"insuranceId\": \"e543deed-ba08-4e0b-ace7-a7d51ff1dcf4\",\n    \"incidenceType\": \"EARTHQUAKE\",\n    \"description\": \"Everything is broken. I need my money! Mooooney! MOOOORE!\",\n    \"amount\": \"567.96\",\n    \"currency\": \"EUR\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/incidences",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "incidences"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Get all incidences",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/incidences",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "incidences"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Get incidence by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/incidences/f6ac92ee-188e-49c2-9587-6687055c27a3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "incidences",
+            "f6ac92ee-188e-49c2-9587-6687055c27a3"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
