@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
-import static es.urjc.cloudapps.insurancecompany.clients.domain.ClientTestDataFactory.getValidClientAddress;
-import static es.urjc.cloudapps.insurancecompany.clients.domain.ClientTestDataFactory.getValidClientId;
+import static es.urjc.cloudapps.insurancecompany.clients.shared.ClientTestDataFactory.getValidClientAddress;
+import static es.urjc.cloudapps.insurancecompany.clients.shared.ClientTestDataFactory.getValidClientId;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

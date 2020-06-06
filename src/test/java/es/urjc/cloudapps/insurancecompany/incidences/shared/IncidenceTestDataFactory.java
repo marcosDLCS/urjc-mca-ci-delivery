@@ -1,5 +1,6 @@
-package es.urjc.cloudapps.insurancecompany.incidences.domain;
+package es.urjc.cloudapps.insurancecompany.incidences.shared;
 
+import es.urjc.cloudapps.insurancecompany.incidences.domain.*;
 import es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceId;
 
 import java.math.BigDecimal;
@@ -29,6 +30,11 @@ public final class IncidenceTestDataFactory {
 
     public static IncidenceAmount getValidIncidenceAmount() {
         return new IncidenceAmount(BigDecimal.TEN, "EUR");
+    }
+
+    public static Incidence getValidIncidence() {
+        return new Incidence(getValidIncidenceId(), getValidInsuranceId(), getValidCoverageIncidence(),
+                getValidIncidenceAmount(), IncidenceStatus.ACCEPTED, "random-description");
     }
 
 }

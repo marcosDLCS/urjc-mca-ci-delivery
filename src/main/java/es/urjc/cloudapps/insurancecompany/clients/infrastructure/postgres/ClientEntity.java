@@ -1,4 +1,4 @@
-package es.urjc.cloudapps.insurancecompany.clients.infrastructure.h2;
+package es.urjc.cloudapps.insurancecompany.clients.infrastructure.postgres;
 
 import lombok.Getter;
 import lombok.Setter;

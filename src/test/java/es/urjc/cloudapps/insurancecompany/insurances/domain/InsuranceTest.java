@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 
-import static es.urjc.cloudapps.insurancecompany.clients.domain.ClientTestDataFactory.getValidClientId;
-import static es.urjc.cloudapps.insurancecompany.incidences.domain.IncidenceTestDataFactory.getValidInsuranceId;
-import static es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceTestDataFactory.geValidCoverages;
-import static es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceTestDataFactory.getValidHouse;
+import static es.urjc.cloudapps.insurancecompany.clients.shared.ClientTestDataFactory.getValidClientId;
+import static es.urjc.cloudapps.insurancecompany.incidences.shared.IncidenceTestDataFactory.getValidInsuranceId;
+import static es.urjc.cloudapps.insurancecompany.insurances.shared.InsuranceTestDataFactory.geValidCoverages;
+import static es.urjc.cloudapps.insurancecompany.insurances.shared.InsuranceTestDataFactory.getValidHouse;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

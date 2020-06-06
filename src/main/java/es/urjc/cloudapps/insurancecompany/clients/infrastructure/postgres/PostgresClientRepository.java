@@ -1,4 +1,4 @@
-package es.urjc.cloudapps.insurancecompany.clients.infrastructure.h2;
+package es.urjc.cloudapps.insurancecompany.clients.infrastructure.postgres;
 
 import es.urjc.cloudapps.insurancecompany.clients.domain.Client;
 import es.urjc.cloudapps.insurancecompany.clients.domain.ClientAddress;
@@ -13,27 +13,27 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-public class H2ClientRepository implements ClientRepository {
+public class PostgresClientRepository implements ClientRepository {
 
-    private final H2ClientEntityRepository h2ClientEntityRepository;
+    private final PostgresClientEntityRepository postgresClientEntityRepository;
     private final ClientMapper clientMapper;
 
-    public H2ClientRepository(H2ClientEntityRepository h2ClientEntityRepository) {
-        this.h2ClientEntityRepository = h2ClientEntityRepository;
+    public PostgresClientRepository(PostgresClientEntityRepository postgresClientEntityRepository) {
+        this.postgresClientEntityRepository = postgresClientEntityRepository;
         this.clientMapper = Mappers.getMapper(ClientMapper.class);
     }
 
     @Override
     public List<Client> findAll() {
 
-        final List<ClientEntity> clients = h2ClientEntityRepository.findAll();
+        final List<ClientEntity> clients = postgresClientEntityRepository.findAll();
         return clients.stream().map(this::clientEntityToClient).collect(Collectors.toList());
     }
 
     @Override
     public Client findOne(ClientId id) {
 
-        final Optional<ClientEntity> client = h2ClientEntityRepository.findById(id.getId());
+        final Optional<ClientEntity> client = postgresClientEntityRepository.findById(id.getId());
         return client.map(this::clientEntityToClient).orElse(null);
     }
 
@@ -41,7 +41,7 @@ public class H2ClientRepository implements ClientRepository {
     public void save(Client client) {
 
         final ClientEntity clientEntity = clientMapper.clientToClientEntity(client);
-        h2ClientEntityRepository.save(clientEntity);
+        postgresClientEntityRepository.save(clientEntity);
     }
 
     private Client clientEntityToClient(ClientEntity c) {

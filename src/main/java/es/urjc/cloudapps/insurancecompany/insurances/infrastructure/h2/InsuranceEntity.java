@@ -1,6 +1,6 @@
 package es.urjc.cloudapps.insurancecompany.insurances.infrastructure.h2;
 
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.h2.ClientEntity;
+import es.urjc.cloudapps.insurancecompany.clients.infrastructure.postgres.ClientEntity;
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.h2.IncidenceEntity;
 import lombok.Getter;
 import lombok.Setter;

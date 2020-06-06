@@ -3,7 +3,7 @@ package es.urjc.cloudapps.insurancecompany.incidences.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static es.urjc.cloudapps.insurancecompany.incidences.domain.IncidenceTestDataFactory.getValidCoverageIncidenceId;
+import static es.urjc.cloudapps.insurancecompany.incidences.shared.IncidenceTestDataFactory.getValidCoverageIncidenceId;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

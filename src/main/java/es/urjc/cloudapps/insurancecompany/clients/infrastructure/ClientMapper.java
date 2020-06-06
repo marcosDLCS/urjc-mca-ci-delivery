@@ -2,7 +2,7 @@ package es.urjc.cloudapps.insurancecompany.clients.infrastructure;
 
 import es.urjc.cloudapps.insurancecompany.clients.application.create.CreateClientCommand;
 import es.urjc.cloudapps.insurancecompany.clients.domain.Client;
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.h2.ClientEntity;
+import es.urjc.cloudapps.insurancecompany.clients.infrastructure.postgres.ClientEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

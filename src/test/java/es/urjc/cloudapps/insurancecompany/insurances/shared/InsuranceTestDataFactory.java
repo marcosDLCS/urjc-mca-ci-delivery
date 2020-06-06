@@ -1,10 +1,13 @@
-package es.urjc.cloudapps.insurancecompany.insurances.domain;
+package es.urjc.cloudapps.insurancecompany.insurances.shared;
 
 import es.urjc.cloudapps.insurancecompany.incidences.domain.CoverageIncidence;
-import es.urjc.cloudapps.insurancecompany.incidences.domain.IncidenceTestDataFactory;
+import es.urjc.cloudapps.insurancecompany.incidences.shared.IncidenceTestDataFactory;
+import es.urjc.cloudapps.insurancecompany.insurances.domain.*;
 
 import java.util.Set;
 import java.util.UUID;
+
+import static es.urjc.cloudapps.insurancecompany.clients.shared.ClientTestDataFactory.getValidClientId;
 
 public final class InsuranceTestDataFactory {
 
@@ -35,6 +38,10 @@ public final class InsuranceTestDataFactory {
 
     public static Set<Coverage> geValidCoverages() {
         return Set.of(new Coverage("random-coverage", getValidCoverageIncidences()));
+    }
+
+    public static Insurance getValidInsurance() {
+        return new Insurance(getValidInsuranceId(), getValidClientId(), getValidHouse(), geValidCoverages());
     }
 
 }

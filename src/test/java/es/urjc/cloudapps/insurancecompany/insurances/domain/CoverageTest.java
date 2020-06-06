@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.Collections;
 
-import static es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceTestDataFactory.getValidCoverageIncidences;
+import static es.urjc.cloudapps.insurancecompany.insurances.shared.InsuranceTestDataFactory.getValidCoverageIncidences;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

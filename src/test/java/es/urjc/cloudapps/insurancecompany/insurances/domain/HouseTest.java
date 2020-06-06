@@ -3,8 +3,8 @@ package es.urjc.cloudapps.insurancecompany.insurances.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceTestDataFactory.getValidHouseAddress;
-import static es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceTestDataFactory.getValidHouseRegistry;
+import static es.urjc.cloudapps.insurancecompany.insurances.shared.InsuranceTestDataFactory.getValidHouseAddress;
+import static es.urjc.cloudapps.insurancecompany.insurances.shared.InsuranceTestDataFactory.getValidHouseRegistry;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

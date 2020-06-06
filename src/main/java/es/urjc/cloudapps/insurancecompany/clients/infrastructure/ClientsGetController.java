@@ -19,7 +19,7 @@ public class ClientsGetController {
     private final ClientMapper clientMapper;
     private final ClientFinder clientFinder;
 
-    public ClientsGetController(ClientFinder clientFinder) {
+    public ClientsGetController(final ClientFinder clientFinder) {
         this.clientFinder = clientFinder;
         this.clientMapper = Mappers.getMapper(ClientMapper.class);
     }
