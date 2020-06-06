@@ -13,7 +13,7 @@ public class Client {
 
     private final ClientAddress address;
 
-    public Client(ClientId id, String name, String surname, ClientAddress address) {
+    public Client(final ClientId id, final String name, final String surname, final ClientAddress address) {
 
         Assert.isTrue(id != null, "Client id must not be null");
         Assert.isTrue(!StringUtils.isEmpty(name), "Client name must not be null or empty");

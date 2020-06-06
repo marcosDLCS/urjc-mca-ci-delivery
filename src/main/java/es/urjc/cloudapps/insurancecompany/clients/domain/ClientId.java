@@ -4,7 +4,7 @@ import es.urjc.cloudapps.insurancecompany.shared.domain.Uuid;
 
 public class ClientId extends Uuid {
 
-    public ClientId(String id) {
+    public ClientId(final String id) {
         super(id);
     }
 

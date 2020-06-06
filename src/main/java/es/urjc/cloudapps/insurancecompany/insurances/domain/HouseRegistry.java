@@ -9,7 +9,7 @@ public class HouseRegistry {
     @Getter
     private final String registry;
 
-    public HouseRegistry(String registry) {
+    public HouseRegistry(final String registry) {
 
         Assert.isTrue(!StringUtils.isEmpty(registry), "Registry must not be null or empty");
 

@@ -2,10 +2,12 @@
 
 ## Módulo IV. Integración y entrega continua<!-- omit in toc -->
 
-### Práctica. Configuración de un pipeline de integración continua<!-- omit in toc -->
+### Práctica. Configuración de un pipeline/workflow de integración continua<!-- omit in toc -->
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marcosDLCS_urjc_mca_ci_delivery&metric=alert_status)](https://sonarcloud.io/dashboard?id=marcosDLCS_urjc_mca_ci_delivery)
-![CI - Workflow](https://github.com/marcosDLCS/urjc_mca_ci_delivery/workflows/Java%2011%20CI%20with%20Maven/badge.svg?branch=master)
+[![CodeFactor](https://www.codefactor.io/repository/github/marcosdlcs/urjc_mca_ci_delivery/badge/master)](https://www.codefactor.io/repository/github/marcosdlcs/urjc_mca_ci_delivery/overview/master)
+![Build & Analysis](https://github.com/marcosDLCS/urjc_mca_ci_delivery/workflows/Build%20&%20Analysis/badge.svg)
+
 
 #### Tabla de contenidos<!-- omit in toc -->
 
