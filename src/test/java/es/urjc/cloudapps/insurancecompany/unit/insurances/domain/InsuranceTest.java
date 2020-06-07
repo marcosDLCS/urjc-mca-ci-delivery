@@ -25,6 +25,7 @@ class InsuranceTest {
     private House validHouse;
     private InsuranceId validInsuranceId;
     private Set<Coverage> validCoverages;
+    private final Set<Coverage> emptyCoverages = Collections.emptySet();
 
     @BeforeEach
     void setup() {
@@ -107,8 +108,7 @@ class InsuranceTest {
     void ensure_empty_coverages_throws_exception() {
 
         assertThrows(IllegalArgumentException.class,
-                () -> new Insurance(this.validInsuranceId, this.validClientId, this.validHouse,
-                        Collections.emptySet()));
+                () -> new Insurance(this.validInsuranceId, this.validClientId, this.validHouse, this.emptyCoverages));
     }
 
     @Test
@@ -116,8 +116,7 @@ class InsuranceTest {
     void ensure_empty_coverages_exception_has_correct_message() {
 
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Insurance(this.validInsuranceId, this.validClientId, this.validHouse,
-                        Collections.emptySet()));
+                () -> new Insurance(this.validInsuranceId, this.validClientId, this.validHouse, this.emptyCoverages));
         assertThat(exception.getMessage()).isEqualTo("Insurance coverages must not be empty");
     }
 

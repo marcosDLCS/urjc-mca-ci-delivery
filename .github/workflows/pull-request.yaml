@@ -20,10 +20,17 @@ jobs:
       - name: Build and test with Maven
         run: mvn -B test -f pom.xml -Dtest="es.urjc.cloudapps.insurancecompany.unit.**"
 
-      - uses: actions/upload-artifact@v2
+      - name: Save Jacoco Exec
+        uses: actions/upload-artifact@v2
         with:
           name: jacoco_coverage.exec
           path: target/jacoco.exec
+
+      - name: Save Jacoco XML Repost
+        uses: actions/upload-artifact@v2
+        with:
+          name: jacoco_coverage_report.xml
+          path: taget/site/jacoco/jacoco.xml
 
       - name: SonarCloud Scan
         run: |
@@ -34,5 +41,5 @@ jobs:
           -Dsonar.organization=marcosdlcs \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
           -Dsonar.java.coveragePlugin=jacoco \
-          -Dsonar.jacoco.reportPath=taget/jacoco.exec
+          -Dsonar.coverage.jacoco.xmlReportPaths=taget/site/jacoco/jacoco.xml
 
