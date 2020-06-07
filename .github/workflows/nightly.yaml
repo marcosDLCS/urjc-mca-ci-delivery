@@ -75,6 +75,6 @@ jobs:
           path: target/pit-reports/**/mutations.xml
 
       - name: Publish package to Github Packages
-        run: mvn -B deploy:deploy
+        run: mvn -B deploy -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
