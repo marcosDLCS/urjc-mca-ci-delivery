@@ -4,6 +4,7 @@ on:
   release:
     branches:
       - master
+    types: [published]
 
 jobs:
   release_version:
