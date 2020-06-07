@@ -27,7 +27,7 @@ jobs:
 
       - name: SonarCloud Scan
         run: |
-          mvn -B -f pom.xml org.sonarsource.scanner.maven:sonar \
+          mvn -B -f pom.xml sonar:sonar \
           -Dsonar.projectKey='marcosDLCS_urjc_mca_ci_delivery' \
           -Dsonar.projectName='URJC MCA CI-DELIVERY' \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
