@@ -1,6 +1,9 @@
 package es.urjc.cloudapps.insurancecompany.unit.clients.domain;
 
 import es.urjc.cloudapps.insurancecompany.clients.domain.Client;
+import es.urjc.cloudapps.insurancecompany.clients.domain.ClientAddress;
+import es.urjc.cloudapps.insurancecompany.clients.domain.ClientId;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,12 +16,21 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ClientTest {
 
+    private ClientId validClientId;
+    private ClientAddress validClientAddress;
+
+    @BeforeEach
+    void setup() {
+        this.validClientId = getValidClientId();
+        this.validClientAddress = getValidClientAddress();
+    }
+
     @Test
     @DisplayName("Ensure missing client id throws correct exception")
     void ensure_missing_client_id_throws_exception() {
 
         assertThrows(IllegalArgumentException.class, () -> new Client(null, "random-name",
-                "random-surname", getValidClientAddress()));
+                "random-surname", this.validClientAddress));
     }
 
     @Test
@@ -26,7 +38,7 @@ class ClientTest {
     void ensure_missing_client_id_exception_has_correct_message() {
 
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Client(null, "random-name", "random-surname", getValidClientAddress()));
+                () -> new Client(null, "random-name", "random-surname", this.validClientAddress));
         assertThat(exception.getMessage()).isEqualTo("Client id must not be null");
     }
 
@@ -36,7 +48,7 @@ class ClientTest {
     void ensure_missing_client_name_throws_exception(final String name) {
 
         assertThrows(IllegalArgumentException.class,
-                () -> new Client(getValidClientId(), name, "random-surname", getValidClientAddress()));
+                () -> new Client(this.validClientId, name, "random-surname", this.validClientAddress));
     }
 
     @ParameterizedTest
@@ -45,7 +57,7 @@ class ClientTest {
     void ensure_missing_client_name_exception_has_correct_message(final String name) {
 
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Client(getValidClientId(), name, "random-surname", getValidClientAddress()));
+                () -> new Client(this.validClientId, name, "random-surname", this.validClientAddress));
         assertThat(exception.getMessage()).isEqualTo("Client name must not be null or empty");
     }
 
@@ -55,7 +67,7 @@ class ClientTest {
     void ensure_missing_client_surname_throws_exception(final String surname) {
 
         assertThrows(IllegalArgumentException.class,
-                () -> new Client(getValidClientId(), "random-name", surname, getValidClientAddress()));
+                () -> new Client(this.validClientId, "random-name", surname, this.validClientAddress));
     }
 
     @ParameterizedTest
@@ -64,7 +76,7 @@ class ClientTest {
     void ensure_missing_client_surname_exception_has_correct_message(final String surname) {
 
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Client(getValidClientId(), "random-name", surname, getValidClientAddress()));
+                () -> new Client(this.validClientId, "random-name", surname, this.validClientAddress));
         assertThat(exception.getMessage()).isEqualTo("Client surname must not be null or empty");
     }
 
@@ -72,8 +84,8 @@ class ClientTest {
     @DisplayName("Ensure missing client address throws correct exception")
     void ensure_missing_client_address_throws_exception() {
 
-        assertThrows(IllegalArgumentException.class, () -> new Client(getValidClientId(),
-                "random-name", "random-surname", null));
+        assertThrows(IllegalArgumentException.class, () -> new Client(this.validClientId, "random-name",
+                "random-surname", null));
     }
 
     @Test
@@ -81,7 +93,7 @@ class ClientTest {
     void ensure_missing_client_address_exception_has_correct_message() {
 
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Client(getValidClientId(), "random-name", "random-surname", null));
+                () -> new Client(this.validClientId, "random-name", "random-surname", null));
         assertThat(exception.getMessage()).isEqualTo("Client address must not be null");
     }
 
@@ -89,8 +101,8 @@ class ClientTest {
     @DisplayName("Ensure valid client params returns a new object")
     void ensure_valid_client_params_returns_a_new_object() {
 
-        assertThat(new Client(getValidClientId(), "random-name", "random-surname",
-                getValidClientAddress())).isNotNull();
+        assertThat(new Client(this.validClientId, "random-name", "random-surname",
+                this.validClientAddress)).isNotNull();
     }
 
 }

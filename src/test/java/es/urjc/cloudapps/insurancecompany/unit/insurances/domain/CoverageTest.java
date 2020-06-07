@@ -1,5 +1,6 @@
 package es.urjc.cloudapps.insurancecompany.unit.insurances.domain;
 
+import es.urjc.cloudapps.insurancecompany.incidences.domain.CoverageIncidence;
 import es.urjc.cloudapps.insurancecompany.insurances.domain.Coverage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.Collections;
+import java.util.Set;
 
 import static es.urjc.cloudapps.insurancecompany.unit.insurances.shared.InsuranceTestDataFactory.getValidCoverageIncidences;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,12 +16,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CoverageTest {
 
+    private final Set<CoverageIncidence> emptyCoverageIncidences = Collections.emptySet();
+
+
     @ParameterizedTest
     @DisplayName("Ensure missing coverage name throws correct exception")
     @NullAndEmptySource
     void ensure_missing_coverage_name_throws_exception(final String name) {
 
-        assertThrows(IllegalArgumentException.class, () -> new Coverage(name, Collections.emptySet()));
+        assertThrows(IllegalArgumentException.class, () -> new Coverage(name, this.emptyCoverageIncidences));
     }
 
     @ParameterizedTest
@@ -28,7 +33,7 @@ class CoverageTest {
     void ensure_missing_coverage_name_exception_has_correct_message(final String name) {
 
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Coverage(name, Collections.emptySet()));
+                () -> new Coverage(name, this.emptyCoverageIncidences));
         assertThat(exception.getMessage()).isEqualTo("Coverage name must not be null or empty");
     }
 
@@ -52,7 +57,7 @@ class CoverageTest {
     @DisplayName("Ensure empty coverage incidences throws correct exception")
     void ensure_empty_coverage_incidences_throws_exception() {
 
-        assertThrows(IllegalArgumentException.class, () -> new Coverage("random-name", Collections.emptySet()));
+        assertThrows(IllegalArgumentException.class, () -> new Coverage("random-name", this.emptyCoverageIncidences));
     }
 
     @Test
@@ -60,7 +65,7 @@ class CoverageTest {
     void ensure_empty_coverage_incidences_exception_has_correct_message() {
 
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Coverage("random-name", Collections.emptySet()));
+                () -> new Coverage("random-name", this.emptyCoverageIncidences));
         assertThat(exception.getMessage()).isEqualTo("Coverage incidences must not be empty");
     }
 
