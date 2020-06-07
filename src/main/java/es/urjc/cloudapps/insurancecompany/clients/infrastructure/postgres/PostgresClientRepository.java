@@ -4,7 +4,7 @@ import es.urjc.cloudapps.insurancecompany.clients.domain.Client;
 import es.urjc.cloudapps.insurancecompany.clients.domain.ClientAddress;
 import es.urjc.cloudapps.insurancecompany.clients.domain.ClientId;
 import es.urjc.cloudapps.insurancecompany.clients.domain.ClientRepository;
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.ClientMapper;
+import es.urjc.cloudapps.insurancecompany.clients.infrastructure.shared.ClientMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Repository;
 
