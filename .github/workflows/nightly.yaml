@@ -28,9 +28,9 @@ jobs:
 
       - name: Build, run all tests and package artifact with Maven
         run: |
-          PROJECT_VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
+          PROJECT_VERSION=$(mvn -B org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
           NIGHTLY_VERSION=$(echo $GITHUB_SHA | cut -c1-8)
-          mvn versions:set -DnewVersion=$PROJECT_VERSION.$NIGHTLY_VERSION-SNAPSHOT
+          mvn -B versions:set -DnewVersion=$PROJECT_VERSION.$NIGHTLY_VERSION-SNAPSHOT
           mvn -B clean package -f pom.xml
 
       - name: Save Jacoco Exec
