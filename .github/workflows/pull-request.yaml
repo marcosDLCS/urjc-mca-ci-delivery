@@ -26,7 +26,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build, unit tests and slice tests with Maven
-        run: mvn -B clean package -f pom.xml -Dtest="es.urjc.cloudapps.insurancecompany.unit.**"
+        run: mvn -B clean package -f pom.xml -Dtest='es.urjc.cloudapps.insurancecompany.unit.**'
 
       - name: Save Jacoco Exec
         uses: actions/upload-artifact@v2
