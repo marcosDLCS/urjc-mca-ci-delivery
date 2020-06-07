@@ -17,14 +17,15 @@ jobs:
         with:
           java-version: 11
 
-      - uses: actions/cache@v2
+      - name: Cache dependencies
+        uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Build and test with Maven
+      - name: Build, unit tests and slice tests with Maven
         run: mvn -B clean package -f pom.xml -Dtest="es.urjc.cloudapps.insurancecompany.unit.**"
 
       - name: Save Jacoco Exec
@@ -37,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jacoco_coverage_report.xml
-          path: taget/site/jacoco/jacoco.xml
+          path: target/site/jacoco/jacoco.xml
 
       - name: SonarCloud Scan
         run: |
@@ -48,5 +49,5 @@ jobs:
           -Dsonar.organization=marcosdlcs \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
           -Dsonar.java.coveragePlugin=jacoco \
-          -Dsonar.coverage.jacoco.xmlReportPaths=taget/site/jacoco/jacoco.xml
+          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 

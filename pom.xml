@@ -12,7 +12,7 @@
 
     <groupId>es.urjc.cloudapps</groupId>
     <artifactId>insurance-company</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>insurance-company</name>
     <description>Práctica. Integración y entrega continua. Máster Cloud Apps</description>
 
@@ -189,7 +189,7 @@
                 </dependencies>
                 <configuration>
                     <outputFormats>
-                        <outputFormat>HTML</outputFormat>
+                        <outputFormat>XML</outputFormat>
                     </outputFormats>
                     <mutators>
                         <mutator>ALL</mutator>
@@ -227,5 +227,13 @@
         </plugins>
 
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/marcosDLCS/urjc_mca_ci_delivery</url>
+        </repository>
+    </distributionManagement>
 
 </project>
