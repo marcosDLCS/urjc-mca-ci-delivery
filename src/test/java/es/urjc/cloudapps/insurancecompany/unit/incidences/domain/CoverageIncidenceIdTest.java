@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class CoverageIncidenceIdTest {
 
     @ParameterizedTest
-    @DisplayName("Ensure missing uuid throws correct exception")
+    @DisplayName("Ensure missing id throws correct exception")
     @NullAndEmptySource
     void ensure_missing_uuid_throws_exception(final String id) {
 
@@ -22,29 +22,13 @@ class CoverageIncidenceIdTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Ensure missing uuid exception has correct message")
+    @DisplayName("Ensure missing id exception has correct message")
     @NullAndEmptySource
     void ensure_missing_uuid_exception_has_correct_message(final String id) {
 
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> new CoverageIncidenceId(id));
-        assertThat(exception.getMessage()).isEqualTo("Uuid must not be null or empty");
-    }
-
-    @Test
-    @DisplayName("Ensure invalid uuid throws correct exception")
-    void ensure_invalid_uuid_throws_exception() {
-
-        assertThrows(IllegalArgumentException.class, () -> new CoverageIncidenceId("invalid-id"));
-    }
-
-    @Test
-    @DisplayName("Ensure invalid uuid exception has correct message")
-    void ensure_invalid_uuid_exception_has_correct_message() {
-
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new CoverageIncidenceId("invalid-id"));
-        assertThat(exception.getMessage()).isEqualTo("Uuid must have the correct format");
+        assertThat(exception.getMessage()).isEqualTo("Coverage id must not be null or empty");
     }
 
     @Test

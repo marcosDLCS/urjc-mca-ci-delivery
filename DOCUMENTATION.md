@@ -38,7 +38,7 @@ En el *workflow* de ***pull-request*** se realizan las siguientes acciones:
 - Descarga del código
 - Recuperación de la caché de dependencias
 - Compilación del código
-- Paso de tests unitarios yb *slice tests*
+- Paso de tests unitarios y *slice tests*
 - Publicación en salida del *job* de los ficheros de cobertura de JaCoCo (exec y XML)
 - Paso de analisis estático con Sonar
 - Tareas automáticas de Github Actions *post-workflow* 
@@ -51,8 +51,33 @@ De manera añadida se han configurado los *bots* de [DeepCode.ai](https://www.de
 
 ### Release
 
-...
+En el *workflow* de ***release*** se realizan las siguientes acciones:
+
+- Descarga del código
+- Recuperación de la caché de dependencias
+- Cambio de la versión actual del código a una con el siguiente esquema: **<version>.-RELEASE**
+- Compilación del código
+- Paso de tests unitarios, *slice tests* y test de integración (Rest Assured + TestContainers)
+- Creación del artefacto **.jar**
+- Publicación en salida del *job* de los ficheros de cobertura de JaCoCo (exec y XML)
+- Publicación del artefacto en GitHub Packages
+- Tareas automáticas de Github Actions *post-workflow* 
 
 ### Nightly
 
-...
+En el *workflow* de ***nightly*** se realizan las siguientes acciones:
+
+- Descarga del código
+- Recuperación de la caché de dependencias
+- Cambio de la versión actual del código a una con el siguiente esquema: **<version>.<sha-8>-SNAPSHOT**
+- Compilación del código
+- Paso de tests unitarios, *slice tests* y test de integración (Rest Assured + TestContainers)
+- Creación del artefacto **.jar**
+- Publicación en salida del *job* de los ficheros de cobertura de JaCoCo (exec y XML)
+- Paso de analisis estático con Sonar
+- Paso de análisis de dependencias de OWASP y publicación de resultados
+- Fase de tests de mutación y publicación de resultados
+- Publicación del artefacto en GitHub Packages
+- Tareas automáticas de Github Actions *post-workflow*
+
+El *workflow* se lanza cada día a las 3:01AM de la mañana siguiendo el formato de crontab **[1 3 * * *]**
