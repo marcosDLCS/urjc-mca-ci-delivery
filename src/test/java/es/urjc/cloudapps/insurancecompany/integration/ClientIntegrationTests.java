@@ -27,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ClientIntegrationTests {
+class ClientIntegrationTests {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
