@@ -1,14 +1,27 @@
 package es.urjc.cloudapps.insurancecompany.incidences.domain;
 
-import es.urjc.cloudapps.insurancecompany.shared.domain.Uuid;
+import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
-public class CoverageIncidenceId extends Uuid {
+public class CoverageIncidenceId {
 
-    public CoverageIncidenceId(String id) {
-        super(id);
+    private final String id;
+
+    public CoverageIncidenceId(final String id) {
+
+        Assert.isTrue(!StringUtils.isEmpty(id), "Coverage id must not be null or empty");
+
+        this.id = id;
     }
 
-    public CoverageIncidenceId() {
-        super();
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "CoverageIncidenceId{" +
+                "id='" + id + '\'' +
+                '}';
     }
 }

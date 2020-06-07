@@ -98,7 +98,6 @@ CREATE TABLE IF NOT EXISTS insurances_incidences
         primary key (insurance_entity_id, incidences_id)
 );
 
-
 INSERT INTO coverages (id)
 VALUES ('WINDOWS_COVERAGE');
 INSERT INTO coverages (id)

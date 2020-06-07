@@ -27,10 +27,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Build, all tests and package with Maven
-        env:
-          PROJECT_VERSION: $(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
+      - name: Build, run all tests and package artifact with Maven
         run: |
+          PROJECT_VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
           mvn versions:set -DnewVersion=$PROJECT_VERSION-RELEASE
           mvn -B clean package -f pom.xml
 
