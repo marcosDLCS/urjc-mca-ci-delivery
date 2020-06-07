@@ -13,16 +13,16 @@ public class Coverage {
 
     private Set<CoverageIncidence> coverageIncidences = new HashSet<>();
 
-    public Coverage(String name) {
+    public Coverage(final String name) {
 
         Assert.isTrue(!StringUtils.isEmpty(name), "Coverage name must not be null");
 
         this.name = name;
     }
 
-    public Coverage(String name, Set<CoverageIncidence> coverageIncidences) {
+    public Coverage(final String name, final Set<CoverageIncidence> coverageIncidences) {
 
-        Assert.isTrue(!StringUtils.isEmpty(name), "Coverage name must not be null");
+        Assert.isTrue(!StringUtils.isEmpty(name), "Coverage name must not be null or empty");
         Assert.isTrue(coverageIncidences != null, "Coverage incidences must not be null");
         Assert.isTrue(!coverageIncidences.isEmpty(), "Coverage incidences must not be empty");
 

@@ -13,22 +13,12 @@ public class IncidenceAmount {
 
     private final CurrencyUnit currency;
 
-    public IncidenceAmount(BigDecimal amount, CurrencyUnit currency) {
+    public IncidenceAmount(final BigDecimal amount, final String currency) {
 
         Assert.isTrue(amount != null, "Amount must not be null");
         Assert.isTrue(amount.compareTo(BigDecimal.ZERO) > 0, "Amount must be positive");
-        Assert.isTrue(currency != null, "Currency must not be null");
-
-        this.amount = amount;
-        this.currency = currency;
-    }
-
-    public IncidenceAmount(BigDecimal amount, String currency) {
-
-        Assert.isTrue(amount != null, "Amount must not be null");
-        Assert.isTrue(amount.compareTo(BigDecimal.ZERO) > 0, "Amount must be positive");
-        Assert.isTrue(!StringUtils.isEmpty(currency), "Currency string must not be null");
-        Assert.isTrue(Monetary.getCurrency(currency) != null, "Currency must be valid");
+        Assert.isTrue(!StringUtils.isEmpty(currency), "Currency string must not be null or empty");
+        Assert.isTrue(ensureCurrencyIsValid(currency), "Currency must be valid");
 
         this.amount = amount;
         this.currency = Monetary.getCurrency(currency);
@@ -48,5 +38,13 @@ public class IncidenceAmount {
                 "amount=" + amount +
                 ", currency=" + currency +
                 '}';
+    }
+
+    private boolean ensureCurrencyIsValid(final String currency) {
+        try {
+            return Monetary.getCurrency(currency) != null;
+        } catch (final Exception e) {
+            return Boolean.FALSE;
+        }
     }
 }

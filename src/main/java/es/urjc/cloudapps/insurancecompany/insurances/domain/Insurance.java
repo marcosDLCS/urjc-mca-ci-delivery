@@ -18,7 +18,7 @@ public class Insurance {
 
     private final Set<Coverage> coverages;
 
-    public Insurance(InsuranceId id, ClientId clientId, House house, Set<Coverage> coverages) {
+    public Insurance(final InsuranceId id, final ClientId clientId, final House house, final Set<Coverage> coverages) {
 
         Assert.isTrue(id != null, "Insurance id must not be null");
         Assert.isTrue(clientId != null, "Insurance client id must not be null");

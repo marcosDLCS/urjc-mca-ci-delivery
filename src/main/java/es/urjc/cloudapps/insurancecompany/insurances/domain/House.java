@@ -8,7 +8,7 @@ public class House {
 
     private final HouseAddress address;
 
-    public House(HouseRegistry registry, HouseAddress address) {
+    public House(final HouseRegistry registry, final HouseAddress address) {
 
         Assert.isTrue(registry != null, "House registry must not be null");
         Assert.isTrue(address != null, "House address must not be null");

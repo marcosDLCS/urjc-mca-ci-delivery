@@ -22,8 +22,8 @@ public class Incidence {
 
     private IncidenceStatus status;
 
-    public Incidence(IncidenceId id, InsuranceId insuranceId, CoverageIncidence coverageIncidence,
-                     IncidenceAmount amount, IncidenceStatus status, String description) {
+    public Incidence(final IncidenceId id, final InsuranceId insuranceId, final CoverageIncidence coverageIncidence,
+                     final IncidenceAmount amount, final IncidenceStatus status, final String description) {
 
         Assert.isTrue(id != null, "Incidence id must not be null");
         Assert.isTrue(insuranceId != null, "Incidence insurance id must not be null");

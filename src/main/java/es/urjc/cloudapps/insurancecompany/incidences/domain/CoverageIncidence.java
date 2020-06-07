@@ -8,7 +8,7 @@ public class CoverageIncidence {
 
     private final CoverageIncidenceId id;
 
-    public CoverageIncidence(CoverageIncidenceId id) {
+    public CoverageIncidence(final CoverageIncidenceId id) {
 
         Assert.isTrue(id != null, "Incidence id must not be null");
 
