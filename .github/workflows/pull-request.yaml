@@ -30,5 +30,7 @@ jobs:
           mvn -B -f pom.xml sonar:sonar \
           -Dsonar.projectKey='marcosDLCS_urjc_mca_ci_delivery' \
           -Dsonar.projectName='URJC MCA CI-DELIVERY' \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.organization=marcosdlcs \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
