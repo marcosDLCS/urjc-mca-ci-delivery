@@ -1,6 +1,13 @@
-# Documentación<!-- omit in toc-->
+# Documentación<!-- omit in toc -->
 
-## Tabla de contenidos<!-- omit in toc-->
+## Tabla de contenidos<!-- omit in toc -->
+
+- [Proyecto](#proyecto)
+- [Modelo de desarrollo](#modelo-de-desarrollo)
+- [Workflows](#workflows)
+  - [Pull request](#pull-request)
+  - [Release](#release)
+  - [Nightly](#nightly)
 
 ## Proyecto
 
@@ -33,6 +40,8 @@ En el *workflow* de ***pull-request*** se realizan las siguientes acciones:
 - Paso de tests unitarios
 - Publicación en salida del *job* de los ficheros de cobertura de JaCoCo
 - Paso de analisis estático con Sonar
+
+De manera añadida se han configurado los *bots* de [DeepCode.ai](https://www.deepcode.ai/) y [CodeFactor](https://www.codefactor.io/) para que se ejecuten siempre en cada *pull request*
 
 ### Release
 

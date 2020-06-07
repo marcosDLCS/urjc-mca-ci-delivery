@@ -6,7 +6,7 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marcosDLCS_urjc_mca_ci_delivery&metric=alert_status)](https://sonarcloud.io/dashboard?id=marcosDLCS_urjc_mca_ci_delivery)
 [![CodeFactor](https://www.codefactor.io/repository/github/marcosdlcs/urjc_mca_ci_delivery/badge/master)](https://www.codefactor.io/repository/github/marcosdlcs/urjc_mca_ci_delivery/overview/master)
-![Build & Analysis](https://github.com/marcosDLCS/urjc_mca_ci_delivery/workflows/Build%20&%20Analysis/badge.svg)
+![PR: Build, Test & Analysis](https://github.com/marcosDLCS/urjc_mca_ci_delivery/workflows/PR:%20Build,%20Test%20&%20Analysis/badge.svg)
 
 
 #### Tabla de contenidos<!-- omit in toc -->
