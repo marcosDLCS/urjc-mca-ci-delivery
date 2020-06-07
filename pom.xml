@@ -7,14 +7,14 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.0.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>es.urjc.cloudapps</groupId>
     <artifactId>insurance-company</artifactId>
-    <version>2.0.0</version>
+    <version>3.0.0</version>
     <name>insurance-company</name>
-    <description>Práctica. Integración y entrega continua. Máster Cloud Apps</description>
+    <description>Práctica. Integración y entrega continua. URJC Máster Cloud Apps</description>
 
     <properties>
         <java.version>11</java.version>
@@ -117,7 +117,6 @@
         </dependency>
 
         <!-- Test -->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
