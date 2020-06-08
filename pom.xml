@@ -12,7 +12,7 @@
 
     <groupId>es.urjc.cloudapps</groupId>
     <artifactId>insurance-company</artifactId>
-    <version>3.0.0</version>
+    <version>4.0.0</version>
     <name>insurance-company</name>
     <description>Práctica. Integración y entrega continua. URJC Máster Cloud Apps</description>
 
