@@ -26,12 +26,12 @@ Un ejemplo de los paquetes creados:
 
 En este proyecto se asume un modelo de *branching* que se basa en **TBD *(Trunk Based Development)*** en el que los desarrollos de las diferentes características o *features* se realizan en pequeñas ramas con origen en máster que se integran a través del *pull requests*
 
-Las la rama *master* se ha protegido con las siguientes políticas:
+La rama *master* se ha protegido con las siguientes políticas:
 
 - Paso de los *checks* que incluyen haber superado con éxito la ejecución del *workflow* ***pull-request.yml*** cuyo *job* es ***pull_request_build_analysis***
 - Se deshabilitan los *force push* a la rama *master*
 - Se deshabilitan los borrados en la rama *master*
-- **[NO ACTIVADO]:** Revisión de la *pull request* por al menos 1 persona antes de cualquier posibilidad de *merge*. Sería recomendable tenerlo activado pero al ser una práctica de una única persona no se ha considerado viable.
+- **[NO ACTIVADO]:** Revisión de la *pull request* por al menos 1 persona antes de cualquier posibilidad de *merge*. Sería recomendable tenerlo activado pero al ser una práctica de una única persona no se ha considerado viable
 
 Otras configuraciones interesantes del repositorio son:
 
