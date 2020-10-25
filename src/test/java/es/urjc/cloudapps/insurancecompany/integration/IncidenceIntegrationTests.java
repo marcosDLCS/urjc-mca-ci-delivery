@@ -1,8 +1,8 @@
 package es.urjc.cloudapps.insurancecompany.integration;
 
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDTO;
-import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDTO;
-import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDTO;
+import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
+import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDto;
+import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDto;
 import io.restassured.RestAssured;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
@@ -48,23 +48,23 @@ class IncidenceIntegrationTests {
         final String INT_TESTS_CLIENTS = "### --> Integration Test: Incidences. {} ";
 
         // Create incidence
-        final IncidenceDTO initialIncidence = getRandomIncidence(getInsurance().getId());
+        final IncidenceDto initialIncidence = getRandomIncidence(getInsurance().getId());
 
         saveIncidence(initialIncidence);
         log.info(INT_TESTS_CLIENTS, "...Saved incidence");
 
         // Get all incidences
-        final List<IncidenceDTO> response = getAllIncidences();
+        final List<IncidenceDto> response = getAllIncidences();
         log.info(INT_TESTS_CLIENTS, "...Incidences from DB (find all) ... " + response.toString());
 
         // Ensure is incidence present in List
-        final Optional<IncidenceDTO> incidenceFromResponse = response.stream()
+        final Optional<IncidenceDto> incidenceFromResponse = response.stream()
                 .filter(x -> x.getInsuranceId().equals(initialIncidence.getInsuranceId())).findFirst();
 
         assertThat(incidenceFromResponse).isPresent();
 
         // Ensure incidence is found by id
-        final IncidenceDTO incidenceFromFindOne = getIncidenceById(incidenceFromResponse.get().getId());
+        final IncidenceDto incidenceFromFindOne = getIncidenceById(incidenceFromResponse.get().getId());
         log.info(INT_TESTS_CLIENTS, "...Incidence from DB (find one) ... " + incidenceFromFindOne);
 
         assertThat(incidenceFromFindOne).isNotNull();
@@ -72,11 +72,11 @@ class IncidenceIntegrationTests {
     }
 
 
-    private IncidenceDTO getIncidenceById(final String incidenceId) {
-        return get("/incidences/" + incidenceId).then().statusCode(200).and().extract().body().as(IncidenceDTO.class);
+    private IncidenceDto getIncidenceById(final String incidenceId) {
+        return get("/incidences/" + incidenceId).then().statusCode(200).and().extract().body().as(IncidenceDto.class);
     }
 
-    private void saveIncidence(final IncidenceDTO incidence) throws JsonProcessingException {
+    private void saveIncidence(final IncidenceDto incidence) throws JsonProcessingException {
         with().body(objectMapper.writeValueAsString(incidence))
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .when()
@@ -85,13 +85,13 @@ class IncidenceIntegrationTests {
                 .statusCode(202);
     }
 
-    private List<IncidenceDTO> getAllIncidences() {
-        return Arrays.asList(get("/incidences").then().statusCode(200).and().extract().body().as(IncidenceDTO[].class));
+    private List<IncidenceDto> getAllIncidences() {
+        return Arrays.asList(get("/incidences").then().statusCode(200).and().extract().body().as(IncidenceDto[].class));
     }
 
-    private InsuranceDTO getInsurance() throws JsonProcessingException {
+    private InsuranceDto getInsurance() throws JsonProcessingException {
 
-        final ClientDTO randomClient = getRandomClient();
+        final ClientDto randomClient = getRandomClient();
 
         with().body(objectMapper.writeValueAsString(randomClient))
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -100,8 +100,8 @@ class IncidenceIntegrationTests {
                 .then()
                 .statusCode(202);
 
-        final ClientDTO clientFromDb = Arrays.asList(
-                get("/clients").then().statusCode(200).and().extract().body().as(ClientDTO[].class))
+        final ClientDto clientFromDb = Arrays.asList(
+                get("/clients").then().statusCode(200).and().extract().body().as(ClientDto[].class))
                 .get(0);
 
         with().body(objectMapper.writeValueAsString(getRandomInsurance(clientFromDb.getId())))
@@ -112,7 +112,7 @@ class IncidenceIntegrationTests {
                 .statusCode(202);
 
         return Arrays.asList(
-                get("/insurances").then().statusCode(200).and().extract().body().as(InsuranceDTO[].class))
+                get("/insurances").then().statusCode(200).and().extract().body().as(InsuranceDto[].class))
                 .get(0);
     }
 

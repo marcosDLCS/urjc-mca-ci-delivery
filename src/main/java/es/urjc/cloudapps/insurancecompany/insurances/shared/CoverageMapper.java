@@ -1,4 +1,4 @@
-package es.urjc.cloudapps.insurancecompany.insurances.infrastructure.shared;
+package es.urjc.cloudapps.insurancecompany.insurances.shared;
 
 import es.urjc.cloudapps.insurancecompany.insurances.domain.Coverage;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.postgres.CoverageEntity;

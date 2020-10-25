@@ -1,10 +1,10 @@
 package es.urjc.cloudapps.insurancecompany.integration;
 
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDTO;
+import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
 import es.urjc.cloudapps.insurancecompany.incidences.domain.IncidenceType;
-import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDTO;
+import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDto;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.HouseDTO;
-import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDTO;
+import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDto;
 import org.testcontainers.shaded.org.apache.commons.lang.RandomStringUtils;
 
 import java.math.BigDecimal;
@@ -17,9 +17,9 @@ public final class IntegrationTestDataFactory {
         throw new java.lang.UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
 
-    public static ClientDTO getRandomClient() {
+    public static ClientDto getRandomClient() {
 
-        final ClientDTO randomClient = new ClientDTO();
+        final ClientDto randomClient = new ClientDto();
         randomClient.setName(RandomStringUtils.randomAlphabetic(10));
         randomClient.setSurname("rdm-surname");
         randomClient.setCountry("rdm-country");
@@ -31,7 +31,7 @@ public final class IntegrationTestDataFactory {
         return randomClient;
     }
 
-    public static InsuranceDTO getRandomInsurance(final String clientId) {
+    public static InsuranceDto getRandomInsurance(final String clientId) {
 
         final HouseDTO randomHouse = new HouseDTO();
         randomHouse.setRegistry(UUID.randomUUID().toString());
@@ -41,7 +41,7 @@ public final class IntegrationTestDataFactory {
         randomHouse.setStreet("rdm-street");
         randomHouse.setNumber("rdm-number");
 
-        final InsuranceDTO randomInsurance = new InsuranceDTO();
+        final InsuranceDto randomInsurance = new InsuranceDto();
         randomInsurance.setClientId(clientId);
         randomInsurance.setHouse(randomHouse);
         randomInsurance.setCoverages(Set.of("WINDOWS_COVERAGE", "ELECTRONIC_DEVICES_COVERAGE"));
@@ -49,9 +49,9 @@ public final class IntegrationTestDataFactory {
         return randomInsurance;
     }
 
-    public static IncidenceDTO getRandomIncidence(final String insuranceId) {
+    public static IncidenceDto getRandomIncidence(final String insuranceId) {
 
-        final IncidenceDTO randomIncidence = new IncidenceDTO();
+        final IncidenceDto randomIncidence = new IncidenceDto();
         randomIncidence.setInsuranceId(insuranceId);
         randomIncidence.setIncidenceType(IncidenceType.ACCIDENT.name());
         randomIncidence.setDescription("rdm-description");

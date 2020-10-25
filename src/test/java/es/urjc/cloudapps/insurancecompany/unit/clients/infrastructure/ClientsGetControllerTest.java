@@ -34,7 +34,7 @@ class ClientsGetControllerTest {
     @DisplayName("Ensure status 200 OK when client list is found")
     void ensure_controller_should_return_ok_when_receive_client_list() throws Exception {
 
-        when(clientFinder.findAll()).thenReturn(List.of(ClientTestDataFactory.getValidClient()));
+        when(clientFinder.findAll()).thenReturn(List.of(ClientTestDataFactory.getValidClientFinderResponse()));
         this.mockMvc.perform(get("/clients")).andExpect(status().isOk());
     }
 
@@ -44,7 +44,7 @@ class ClientsGetControllerTest {
 
         final String clientId = UUID.randomUUID().toString();
 
-        when(clientFinder.findOne(any())).thenReturn(ClientTestDataFactory.getValidClient());
+        when(clientFinder.findOne(any())).thenReturn(ClientTestDataFactory.getValidClientFinderResponse());
         this.mockMvc.perform(get("/clients/" + clientId)).andExpect(status().isOk());
     }
 

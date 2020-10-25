@@ -1,9 +1,8 @@
 package es.urjc.cloudapps.insurancecompany.clients.infrastructure.http;
 
 import es.urjc.cloudapps.insurancecompany.clients.application.find.ClientFinder;
-import es.urjc.cloudapps.insurancecompany.clients.domain.Client;
-import es.urjc.cloudapps.insurancecompany.clients.domain.ClientId;
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.shared.ClientMapper;
+import es.urjc.cloudapps.insurancecompany.clients.application.find.ClientFinderResponse;
+import es.urjc.cloudapps.insurancecompany.clients.shared.ClientMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,24 +25,23 @@ public class ClientsGetController {
     }
 
     @GetMapping(path = "/clients")
-    public ResponseEntity<List<ClientDTO>> getAllClients() {
+    public ResponseEntity<List<ClientDto>> getAllClients() {
 
-        final List<Client> clients = clientFinder.findAll();
-        final List<ClientDTO> dto = clients.stream()
-                .map(clientMapper::clientToClientDto).collect(Collectors.toList());
+        final List<ClientFinderResponse> clients = clientFinder.findAll();
+        final List<ClientDto> dto = clients.stream()
+                .map(clientMapper::clientFinderResponseToClientDto).collect(Collectors.toList());
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping(path = "/clients/{id}")
     public ResponseEntity getClientById(@PathVariable final String id) {
 
-        final Client client = clientFinder.findOne(new ClientId(id));
+        final var client = clientFinder.findOne(id);
 
         if (client != null) {
-            return new ResponseEntity<>(clientMapper.clientToClientDto(client), HttpStatus.OK);
+            return new ResponseEntity<>(clientMapper.clientFinderResponseToClientDto(client), HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Client not found", HttpStatus.NOT_FOUND);
         }
     }
-
 }

@@ -15,9 +15,11 @@ public class IncidenceCreator {
     private final CoverageIncidenceRepository coverageIncidenceRepository;
     private final IncidenceStatusCalculatorStrategy statusCalculatorStrategy;
 
-    public IncidenceCreator(IncidenceRepository incidenceRepository, InsuranceRepository insuranceRepository,
-                            CoverageIncidenceRepository coverageIncidenceRepository,
-                            IncidenceStatusCalculatorStrategy statusCalculatorStrategy) {
+    public IncidenceCreator(final IncidenceRepository incidenceRepository,
+                            final InsuranceRepository insuranceRepository,
+                            final CoverageIncidenceRepository coverageIncidenceRepository,
+                            final IncidenceStatusCalculatorStrategy statusCalculatorStrategy) {
+
         this.incidenceRepository = incidenceRepository;
         this.insuranceRepository = insuranceRepository;
         this.coverageIncidenceRepository = coverageIncidenceRepository;

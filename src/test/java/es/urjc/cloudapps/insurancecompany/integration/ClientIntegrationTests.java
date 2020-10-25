@@ -1,6 +1,6 @@
 package es.urjc.cloudapps.insurancecompany.integration;
 
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDTO;
+import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
 import io.restassured.RestAssured;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
@@ -46,23 +46,23 @@ class ClientIntegrationTests {
         final String INT_TESTS_CLIENTS = "### --> Integration Test: Clients. {} ";
 
         // Create client
-        final ClientDTO initialClient = getRandomClient();
+        final ClientDto initialClient = getRandomClient();
 
         saveClient(initialClient);
         log.info(INT_TESTS_CLIENTS, "...Saved client");
 
         // Get all clients
-        final List<ClientDTO> response = getAllClients();
+        final List<ClientDto> response = getAllClients();
         log.info(INT_TESTS_CLIENTS, "...Clients from DB (find all) ... " + response.toString());
 
         // Ensure is client present in List
-        final Optional<ClientDTO> clientFromResponse = response.stream()
+        final Optional<ClientDto> clientFromResponse = response.stream()
                 .filter(x -> x.getName().equals(initialClient.getName())).findFirst();
 
         assertThat(clientFromResponse).isPresent();
 
         // Ensure client is found by id
-        final ClientDTO clientFromFindOne = getClientById(clientFromResponse.get().getId());
+        final ClientDto clientFromFindOne = getClientById(clientFromResponse.get().getId());
         log.info(INT_TESTS_CLIENTS, "...Client from DB (find one) ... " + clientFromFindOne);
 
         assertThat(clientFromFindOne).isNotNull();
@@ -70,11 +70,11 @@ class ClientIntegrationTests {
     }
 
 
-    private ClientDTO getClientById(final String clientId) {
-        return get("/clients/" + clientId).then().statusCode(200).and().extract().body().as(ClientDTO.class);
+    private ClientDto getClientById(final String clientId) {
+        return get("/clients/" + clientId).then().statusCode(200).and().extract().body().as(ClientDto.class);
     }
 
-    private void saveClient(final ClientDTO client) throws JsonProcessingException {
+    private void saveClient(final ClientDto client) throws JsonProcessingException {
         with().body(objectMapper.writeValueAsString(client))
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .when()
@@ -83,8 +83,8 @@ class ClientIntegrationTests {
                 .statusCode(202);
     }
 
-    private List<ClientDTO> getAllClients() {
-        return Arrays.asList(get("/clients").then().statusCode(200).and().extract().body().as(ClientDTO[].class));
+    private List<ClientDto> getAllClients() {
+        return Arrays.asList(get("/clients").then().statusCode(200).and().extract().body().as(ClientDto[].class));
     }
 
 }

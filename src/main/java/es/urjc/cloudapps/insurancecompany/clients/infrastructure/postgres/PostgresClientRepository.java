@@ -4,7 +4,7 @@ import es.urjc.cloudapps.insurancecompany.clients.domain.Client;
 import es.urjc.cloudapps.insurancecompany.clients.domain.ClientAddress;
 import es.urjc.cloudapps.insurancecompany.clients.domain.ClientId;
 import es.urjc.cloudapps.insurancecompany.clients.domain.ClientRepository;
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.shared.ClientMapper;
+import es.urjc.cloudapps.insurancecompany.clients.shared.ClientMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +18,7 @@ public class PostgresClientRepository implements ClientRepository {
     private final PostgresClientEntityRepository postgresClientEntityRepository;
     private final ClientMapper clientMapper;
 
-    public PostgresClientRepository(PostgresClientEntityRepository postgresClientEntityRepository) {
+    public PostgresClientRepository(final PostgresClientEntityRepository postgresClientEntityRepository) {
         this.postgresClientEntityRepository = postgresClientEntityRepository;
         this.clientMapper = Mappers.getMapper(ClientMapper.class);
     }

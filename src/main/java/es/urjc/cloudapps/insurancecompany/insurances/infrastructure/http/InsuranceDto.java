@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-public class InsuranceDTO {
+public class InsuranceDto {
 
     private String id;
 
@@ -16,5 +16,4 @@ public class InsuranceDTO {
     private HouseDTO house;
 
     private Set<String> coverages;
-
 }

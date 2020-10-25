@@ -22,5 +22,4 @@ public class CreateIncidenceCommand {
     private String currency;
 
     private String status;
-
 }

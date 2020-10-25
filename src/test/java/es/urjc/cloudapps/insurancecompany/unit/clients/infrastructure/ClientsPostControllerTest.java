@@ -2,7 +2,7 @@ package es.urjc.cloudapps.insurancecompany.unit.clients.infrastructure;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.urjc.cloudapps.insurancecompany.clients.application.create.ClientCreator;
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDTO;
+import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
 import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientsPostController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ class ClientsPostControllerTest {
     @DisplayName("Ensure status 202 ACCEPTED when invoke client create command")
     void ensure_controller_should_return_ok_when_receive_client_list() throws Exception {
 
-        final ClientDTO clientDTO = new ClientDTO();
+        final ClientDto clientDTO = new ClientDto();
         clientDTO.setName("random-name");
         clientDTO.setSurname("random-surname");
         clientDTO.setCountry("random-country");

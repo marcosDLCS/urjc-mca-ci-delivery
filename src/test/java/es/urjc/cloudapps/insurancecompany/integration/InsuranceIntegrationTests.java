@@ -1,7 +1,7 @@
 package es.urjc.cloudapps.insurancecompany.integration;
 
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDTO;
-import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDTO;
+import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
+import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDto;
 import io.restassured.RestAssured;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
@@ -47,23 +47,23 @@ class InsuranceIntegrationTests {
 
         final String INT_TESTS_CLIENTS = "### --> Integration Test: Insurances. {} ";
 
-        final InsuranceDTO initialInsurance = getRandomInsurance(getClient().getId());
+        final InsuranceDto initialInsurance = getRandomInsurance(getClient().getId());
 
         saveInsurance(initialInsurance);
         log.info(INT_TESTS_CLIENTS, "...Saved insurance");
 
         // Get all insurances
-        final List<InsuranceDTO> response = getAllInsurances();
+        final List<InsuranceDto> response = getAllInsurances();
         log.info(INT_TESTS_CLIENTS, "...Insurances from DB (find all) ... " + response.toString());
 
         // Ensure is insurance present in List
-        final Optional<InsuranceDTO> insuranceFromResponse = response.stream()
+        final Optional<InsuranceDto> insuranceFromResponse = response.stream()
                 .filter(x -> x.getClientId().equals(initialInsurance.getClientId())).findFirst();
 
         assertThat(insuranceFromResponse).isPresent();
 
         // Ensure insurance is found by id
-        final InsuranceDTO insuranceFromFindOne = getInsuranceById(insuranceFromResponse.get().getId());
+        final InsuranceDto insuranceFromFindOne = getInsuranceById(insuranceFromResponse.get().getId());
         log.info(INT_TESTS_CLIENTS, "...Insurance from DB (find one) ... " + insuranceFromFindOne);
 
         assertThat(insuranceFromFindOne).isNotNull();
@@ -71,11 +71,11 @@ class InsuranceIntegrationTests {
     }
 
 
-    private InsuranceDTO getInsuranceById(final String insuranceId) {
-        return get("/insurances/" + insuranceId).then().statusCode(200).and().extract().body().as(InsuranceDTO.class);
+    private InsuranceDto getInsuranceById(final String insuranceId) {
+        return get("/insurances/" + insuranceId).then().statusCode(200).and().extract().body().as(InsuranceDto.class);
     }
 
-    private void saveInsurance(final InsuranceDTO insurance) throws JsonProcessingException {
+    private void saveInsurance(final InsuranceDto insurance) throws JsonProcessingException {
         with().body(objectMapper.writeValueAsString(insurance))
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .when()
@@ -84,13 +84,13 @@ class InsuranceIntegrationTests {
                 .statusCode(202);
     }
 
-    private List<InsuranceDTO> getAllInsurances() {
-        return Arrays.asList(get("/insurances").then().statusCode(200).and().extract().body().as(InsuranceDTO[].class));
+    private List<InsuranceDto> getAllInsurances() {
+        return Arrays.asList(get("/insurances").then().statusCode(200).and().extract().body().as(InsuranceDto[].class));
     }
 
-    private ClientDTO getClient() throws JsonProcessingException {
+    private ClientDto getClient() throws JsonProcessingException {
 
-        final ClientDTO randomClient = getRandomClient();
+        final ClientDto randomClient = getRandomClient();
 
         with().body(objectMapper.writeValueAsString(randomClient))
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -100,7 +100,7 @@ class InsuranceIntegrationTests {
                 .statusCode(202);
 
         return Arrays.asList(
-                get("/clients").then().statusCode(200).and().extract().body().as(ClientDTO[].class))
+                get("/clients").then().statusCode(200).and().extract().body().as(ClientDto[].class))
                 .get(0);
     }
 

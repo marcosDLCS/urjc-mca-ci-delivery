@@ -24,5 +24,4 @@ public class CreateInsuranceCommand {
     private String houseNumber;
 
     private Set<String> coverages;
-
 }

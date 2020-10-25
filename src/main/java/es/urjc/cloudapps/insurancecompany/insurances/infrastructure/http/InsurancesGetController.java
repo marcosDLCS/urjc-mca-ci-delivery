@@ -1,9 +1,8 @@
 package es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http;
 
 import es.urjc.cloudapps.insurancecompany.insurances.application.find.InsuranceFinder;
-import es.urjc.cloudapps.insurancecompany.insurances.domain.Insurance;
-import es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceId;
-import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.shared.InsuranceMapper;
+import es.urjc.cloudapps.insurancecompany.insurances.application.find.InsuranceFinderResponse;
+import es.urjc.cloudapps.insurancecompany.insurances.shared.InsuranceMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,28 +19,28 @@ public class InsurancesGetController {
     private final InsuranceFinder insuranceFinder;
     private final InsuranceMapper insuranceMapper;
 
-    public InsurancesGetController(InsuranceFinder insuranceFinder) {
+    public InsurancesGetController(final InsuranceFinder insuranceFinder) {
         this.insuranceFinder = insuranceFinder;
         this.insuranceMapper = Mappers.getMapper(InsuranceMapper.class);
     }
 
     @GetMapping(path = "/insurances")
-    public ResponseEntity<List<InsuranceDTO>> getAllInsurances() {
+    public ResponseEntity<List<InsuranceDto>> getAllInsurances() {
 
-        List<Insurance> insurances = insuranceFinder.findAll();
+        final List<InsuranceFinderResponse> insurances = insuranceFinder.findAll();
 
-        final List<InsuranceDTO> dto = insurances.stream()
-                .map(insuranceMapper::insuranceToInsuranceDto).collect(Collectors.toList());
+        final List<InsuranceDto> dto = insurances.stream()
+                .map(insuranceMapper::insuranceFinderResponseToInsuranceDto).collect(Collectors.toList());
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @GetMapping(path = "/insurances/{id}")
     public ResponseEntity getInsuranceById(@PathVariable final String id) {
 
-        final Insurance insurance = insuranceFinder.findOne(new InsuranceId(id));
+        final InsuranceFinderResponse insurance = insuranceFinder.findOne(id);
 
         if (insurance != null) {
-            final InsuranceDTO dto = insuranceMapper.insuranceToInsuranceDto(insurance);
+            final InsuranceDto dto = insuranceMapper.insuranceFinderResponseToInsuranceDto(insurance);
             return new ResponseEntity<>(dto, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Insurance not found", HttpStatus.NOT_FOUND);

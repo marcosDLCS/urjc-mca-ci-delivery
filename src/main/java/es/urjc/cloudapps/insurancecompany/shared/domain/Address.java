@@ -15,7 +15,8 @@ public class Address {
 
     private final String number;
 
-    public Address(String country, String city, String postalCode, String street, String number) {
+    public Address(final String country, final String city, final String postalCode, final String street,
+                   final String number) {
 
         Assert.isTrue(!StringUtils.isEmpty(country), "Country must not be null or empty");
         Assert.isTrue(!StringUtils.isEmpty(city), "City must not be null or empty");

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class IncidenceDTO {
+public class IncidenceDto {
 
     private String id;
 

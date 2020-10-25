@@ -34,7 +34,7 @@ class IncidencesGetControllerTest {
     @DisplayName("Ensure status 200 OK when incidence list is found")
     void ensure_controller_should_return_ok_when_receive_incidence_list() throws Exception {
 
-        when(incidenceFinder.findAll()).thenReturn(List.of(IncidenceTestDataFactory.getValidIncidence()));
+        when(incidenceFinder.findAll()).thenReturn(List.of(IncidenceTestDataFactory.getValidIncidenceFinderResponse()));
         this.mockMvc.perform(get("/incidences")).andExpect(status().isOk());
     }
 
@@ -44,7 +44,7 @@ class IncidencesGetControllerTest {
 
         final String incidenceId = UUID.randomUUID().toString();
 
-        when(incidenceFinder.findOne(any())).thenReturn(IncidenceTestDataFactory.getValidIncidence());
+        when(incidenceFinder.findOne(any())).thenReturn(IncidenceTestDataFactory.getValidIncidenceFinderResponse());
         this.mockMvc.perform(get("/incidences/" + incidenceId)).andExpect(status().isOk());
     }
 
