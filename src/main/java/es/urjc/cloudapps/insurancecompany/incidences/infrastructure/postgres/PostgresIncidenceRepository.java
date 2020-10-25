@@ -1,7 +1,7 @@
 package es.urjc.cloudapps.insurancecompany.incidences.infrastructure.postgres;
 
 import es.urjc.cloudapps.insurancecompany.incidences.domain.*;
-import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.shared.IncidenceMapper;
+import es.urjc.cloudapps.insurancecompany.incidences.shared.IncidenceMapper;
 import es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceId;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.postgres.InsuranceEntity;
 import org.mapstruct.factory.Mappers;

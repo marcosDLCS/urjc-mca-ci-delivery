@@ -9,5 +9,4 @@ public interface ClientRepository {
     Client findOne(ClientId id);
 
     void save(Client client);
-
 }

@@ -2,7 +2,7 @@ package es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http;
 
 import es.urjc.cloudapps.insurancecompany.incidences.application.create.CreateIncidenceCommand;
 import es.urjc.cloudapps.insurancecompany.incidences.application.create.IncidenceCreator;
-import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.shared.IncidenceMapper;
+import es.urjc.cloudapps.insurancecompany.incidences.shared.IncidenceMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class IncidencesPostController {
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PostMapping(path = "/incidences", consumes = APPLICATION_JSON_VALUE, produces = TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> newPost(@RequestBody IncidenceDTO dto) {
+    public ResponseEntity<String> newPost(@RequestBody IncidenceDto dto) {
 
         final CreateIncidenceCommand command = incidenceMapper.incidenceDTOtoIncidenceCommand(dto);
         incidenceCreator.create(command);

@@ -2,7 +2,7 @@ package es.urjc.cloudapps.insurancecompany.integration;
 
 import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
 import es.urjc.cloudapps.insurancecompany.incidences.domain.IncidenceType;
-import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDTO;
+import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDto;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.HouseDTO;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDTO;
 import org.testcontainers.shaded.org.apache.commons.lang.RandomStringUtils;
@@ -49,9 +49,9 @@ public final class IntegrationTestDataFactory {
         return randomInsurance;
     }
 
-    public static IncidenceDTO getRandomIncidence(final String insuranceId) {
+    public static IncidenceDto getRandomIncidence(final String insuranceId) {
 
-        final IncidenceDTO randomIncidence = new IncidenceDTO();
+        final IncidenceDto randomIncidence = new IncidenceDto();
         randomIncidence.setInsuranceId(insuranceId);
         randomIncidence.setIncidenceType(IncidenceType.ACCIDENT.name());
         randomIncidence.setDescription("rdm-description");

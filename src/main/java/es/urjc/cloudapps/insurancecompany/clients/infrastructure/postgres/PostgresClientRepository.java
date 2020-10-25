@@ -18,7 +18,7 @@ public class PostgresClientRepository implements ClientRepository {
     private final PostgresClientEntityRepository postgresClientEntityRepository;
     private final ClientMapper clientMapper;
 
-    public PostgresClientRepository(PostgresClientEntityRepository postgresClientEntityRepository) {
+    public PostgresClientRepository(final PostgresClientEntityRepository postgresClientEntityRepository) {
         this.postgresClientEntityRepository = postgresClientEntityRepository;
         this.clientMapper = Mappers.getMapper(ClientMapper.class);
     }

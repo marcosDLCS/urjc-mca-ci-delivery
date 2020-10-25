@@ -1,4 +1,4 @@
-package es.urjc.cloudapps.insurancecompany.incidences.infrastructure.shared;
+package es.urjc.cloudapps.insurancecompany.incidences.shared;
 
 import org.mapstruct.Mapper;
 

@@ -3,7 +3,7 @@ package es.urjc.cloudapps.insurancecompany.unit.incidences.infrastructure;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.urjc.cloudapps.insurancecompany.incidences.application.create.IncidenceCreator;
 import es.urjc.cloudapps.insurancecompany.incidences.domain.IncidenceType;
-import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDTO;
+import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDto;
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidencesPostController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ class IncidencesPostControllerTest {
     @DisplayName("Ensure status 202 ACCEPTED when invoke incidence create command")
     void ensure_controller_should_return_ok_when_receive_client_list() throws Exception {
 
-        final IncidenceDTO incidenceDTO = new IncidenceDTO();
+        final IncidenceDto incidenceDTO = new IncidenceDto();
         incidenceDTO.setInsuranceId(UUID.randomUUID().toString());
         incidenceDTO.setIncidenceType(IncidenceType.ACCIDENT.name());
         incidenceDTO.setDescription("random-description");

@@ -29,5 +29,4 @@ public class ClientEntity {
     private String street;
 
     private String number;
-
 }

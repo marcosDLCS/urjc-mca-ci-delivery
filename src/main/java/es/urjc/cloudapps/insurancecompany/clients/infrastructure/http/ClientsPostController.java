@@ -21,7 +21,7 @@ public class ClientsPostController {
     private final ClientCreator clientCreator;
 
 
-    public ClientsPostController(ClientCreator clientCreator) {
+    public ClientsPostController(final ClientCreator clientCreator) {
         this.clientCreator = clientCreator;
         this.clientMapper = Mappers.getMapper(ClientMapper.class);
     }
@@ -34,5 +34,4 @@ public class ClientsPostController {
         clientCreator.create(command);
         return new ResponseEntity<>("Client created", HttpStatus.ACCEPTED);
     }
-
 }
