@@ -2,7 +2,7 @@ package es.urjc.cloudapps.insurancecompany.integration;
 
 import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDto;
-import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDTO;
+import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDto;
 import io.restassured.RestAssured;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
@@ -89,7 +89,7 @@ class IncidenceIntegrationTests {
         return Arrays.asList(get("/incidences").then().statusCode(200).and().extract().body().as(IncidenceDto[].class));
     }
 
-    private InsuranceDTO getInsurance() throws JsonProcessingException {
+    private InsuranceDto getInsurance() throws JsonProcessingException {
 
         final ClientDto randomClient = getRandomClient();
 
@@ -112,7 +112,7 @@ class IncidenceIntegrationTests {
                 .statusCode(202);
 
         return Arrays.asList(
-                get("/insurances").then().statusCode(200).and().extract().body().as(InsuranceDTO[].class))
+                get("/insurances").then().statusCode(200).and().extract().body().as(InsuranceDto[].class))
                 .get(0);
     }
 

@@ -2,7 +2,7 @@ package es.urjc.cloudapps.insurancecompany.insurances.infrastructure.postgres;
 
 import es.urjc.cloudapps.insurancecompany.clients.domain.ClientId;
 import es.urjc.cloudapps.insurancecompany.insurances.domain.*;
-import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.shared.InsuranceMapper;
+import es.urjc.cloudapps.insurancecompany.insurances.shared.InsuranceMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,9 @@
-package es.urjc.cloudapps.insurancecompany.insurances.infrastructure.shared;
+package es.urjc.cloudapps.insurancecompany.insurances.shared;
 
 import es.urjc.cloudapps.insurancecompany.insurances.application.create.CreateInsuranceCommand;
+import es.urjc.cloudapps.insurancecompany.insurances.application.find.InsuranceFinderResponse;
 import es.urjc.cloudapps.insurancecompany.insurances.domain.Insurance;
-import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDTO;
+import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDto;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.postgres.InsuranceEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,7 +19,7 @@ public interface InsuranceMapper {
     @Mapping(target = "houseStreet", source = "insurance.house.street")
     @Mapping(target = "houseNumber", source = "insurance.house.number")
     @Mapping(target = "coverages", source = "insurance.coverages")
-    CreateInsuranceCommand insuranceDtoToInsuranceCommand(InsuranceDTO insurance);
+    CreateInsuranceCommand insuranceDtoToInsuranceCommand(InsuranceDto insurance);
 
     @Mapping(target = "id", source = "insurance.id.id")
     @Mapping(target = "client.id", source = "insurance.clientId.id")
@@ -40,5 +41,8 @@ public interface InsuranceMapper {
     @Mapping(target = "house.street", source = "insurance.house.address.street")
     @Mapping(target = "house.number", source = "insurance.house.address.number")
     @Mapping(target = "coverages", source = "insurance.coverages")
-    InsuranceDTO insuranceToInsuranceDto(Insurance insurance);
+    InsuranceDto insuranceToInsuranceDto(Insurance insurance);
+
+    InsuranceDto insuranceFinderResponseToInsuranceDto(InsuranceFinderResponse insuranceFinderResponse);
+
 }

@@ -1,12 +1,14 @@
 package es.urjc.cloudapps.insurancecompany.unit.insurances.shared;
 
 import es.urjc.cloudapps.insurancecompany.incidences.domain.CoverageIncidence;
+import es.urjc.cloudapps.insurancecompany.insurances.application.find.InsuranceFinderResponse;
 import es.urjc.cloudapps.insurancecompany.insurances.domain.*;
 import es.urjc.cloudapps.insurancecompany.unit.clients.shared.ClientTestDataFactory;
 import es.urjc.cloudapps.insurancecompany.unit.incidences.shared.IncidenceTestDataFactory;
 
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public final class InsuranceTestDataFactory {
 
@@ -42,6 +44,34 @@ public final class InsuranceTestDataFactory {
     public static Insurance getValidInsurance() {
         return new Insurance(getValidInsuranceId(), ClientTestDataFactory.getValidClientId(), getValidHouse(),
                 geValidCoverages());
+    }
+
+    public static InsuranceFinderResponse getValidInsuranceFinderResponse() {
+        return fromInsuranceToInsuranceResponse(getValidInsurance());
+    }
+
+    private static InsuranceFinderResponse fromInsuranceToInsuranceResponse(final Insurance insurance) {
+        final var builder = InsuranceFinderResponse.builder()
+                .id(insurance.getId() != null ? insurance.getId().getId() : null)
+                .clientId(insurance.getClientId() != null ? insurance.getClientId().getId() : null);
+
+        final var house = insurance.getHouse();
+        HouseAddress houseAddress = null;
+
+        if (house != null) {
+            builder.registry(house.getRegistry() != null ? house.getRegistry().getRegistry() : null);
+            houseAddress = house.getAddress();
+        }
+
+        if (houseAddress != null) {
+            builder.country(houseAddress.getCountry()).city(houseAddress.getCity())
+                    .postalCode(houseAddress.getPostalCode()).street(houseAddress.getStreet())
+                    .number(houseAddress.getNumber());
+        }
+
+        builder.coverages(insurance.getCoverages().stream().map(Coverage::getName).collect(Collectors.toSet()));
+
+        return builder.build();
     }
 
 }

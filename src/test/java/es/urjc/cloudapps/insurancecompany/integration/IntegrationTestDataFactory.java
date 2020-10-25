@@ -4,7 +4,7 @@ import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
 import es.urjc.cloudapps.insurancecompany.incidences.domain.IncidenceType;
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDto;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.HouseDTO;
-import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDTO;
+import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDto;
 import org.testcontainers.shaded.org.apache.commons.lang.RandomStringUtils;
 
 import java.math.BigDecimal;
@@ -31,7 +31,7 @@ public final class IntegrationTestDataFactory {
         return randomClient;
     }
 
-    public static InsuranceDTO getRandomInsurance(final String clientId) {
+    public static InsuranceDto getRandomInsurance(final String clientId) {
 
         final HouseDTO randomHouse = new HouseDTO();
         randomHouse.setRegistry(UUID.randomUUID().toString());
@@ -41,7 +41,7 @@ public final class IntegrationTestDataFactory {
         randomHouse.setStreet("rdm-street");
         randomHouse.setNumber("rdm-number");
 
-        final InsuranceDTO randomInsurance = new InsuranceDTO();
+        final InsuranceDto randomInsurance = new InsuranceDto();
         randomInsurance.setClientId(clientId);
         randomInsurance.setHouse(randomHouse);
         randomInsurance.setCoverages(Set.of("WINDOWS_COVERAGE", "ELECTRONIC_DEVICES_COVERAGE"));

@@ -3,7 +3,7 @@ package es.urjc.cloudapps.insurancecompany.unit.insurances.infrastructure;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.urjc.cloudapps.insurancecompany.insurances.application.create.InsuranceCreator;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.HouseDTO;
-import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDTO;
+import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDto;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsurancesPostController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -47,7 +47,7 @@ class InsurancesPostControllerTest {
         houseDTO.setStreet("random-street");
         houseDTO.setNumber("random-number");
 
-        final InsuranceDTO insuranceDTO = new InsuranceDTO();
+        final InsuranceDto insuranceDTO = new InsuranceDto();
         insuranceDTO.setClientId(UUID.randomUUID().toString());
         insuranceDTO.setHouse(houseDTO);
         insuranceDTO.setCoverages(Set.of("WINDOWS_COVERAGE", "ELECTRONIC_DEVICES_COVERAGE"));
