@@ -16,9 +16,10 @@ public class BasicIncidenceStatusCalculator implements IncidenceStatusCalculator
     private final IncidenceRepository incidenceRepository;
     private final CoverageRepository coverageRepository;
 
-    public BasicIncidenceStatusCalculator(InsuranceRepository insuranceRepository,
-                                          IncidenceRepository incidenceRepository,
-                                          CoverageRepository coverageRepository) {
+    public BasicIncidenceStatusCalculator(final InsuranceRepository insuranceRepository,
+                                          final IncidenceRepository incidenceRepository,
+                                          final CoverageRepository coverageRepository) {
+
         this.insuranceRepository = insuranceRepository;
         this.incidenceRepository = incidenceRepository;
         this.coverageRepository = coverageRepository;
@@ -26,7 +27,8 @@ public class BasicIncidenceStatusCalculator implements IncidenceStatusCalculator
 
     @Override
     @Transactional
-    public IncidenceStatus calculateStatus(InsuranceId insuranceId, CoverageIncidenceId coverageIncidenceId) {
+    public IncidenceStatus calculateStatus(final InsuranceId insuranceId,
+                                           final CoverageIncidenceId coverageIncidenceId) {
 
         if (isFraud(insuranceId)) {
             return IncidenceStatus.SUSPICION_OF_FRAUD;
@@ -39,7 +41,7 @@ public class BasicIncidenceStatusCalculator implements IncidenceStatusCalculator
         return IncidenceStatus.ACCEPTED;
     }
 
-    private boolean isFraud(InsuranceId insuranceId) {
+    private boolean isFraud(final InsuranceId insuranceId) {
 
         final List<Incidence> incidences = incidenceRepository.findByInsuranceId(insuranceId);
 
@@ -52,7 +54,8 @@ public class BasicIncidenceStatusCalculator implements IncidenceStatusCalculator
         }
     }
 
-    private boolean isNotCovered(InsuranceId insuranceId, CoverageIncidenceId coverageIncidenceId) {
+    private boolean isNotCovered(final InsuranceId insuranceId,
+                                 final CoverageIncidenceId coverageIncidenceId) {
 
         final Insurance insurance = insuranceRepository.findOne(insuranceId);
         final Set<Coverage> coverages = insurance.getCoverages();
@@ -65,6 +68,5 @@ public class BasicIncidenceStatusCalculator implements IncidenceStatusCalculator
         }
 
         return Boolean.TRUE;
-
     }
 }

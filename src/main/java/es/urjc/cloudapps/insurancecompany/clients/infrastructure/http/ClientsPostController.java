@@ -2,7 +2,7 @@ package es.urjc.cloudapps.insurancecompany.clients.infrastructure.http;
 
 import es.urjc.cloudapps.insurancecompany.clients.application.create.ClientCreator;
 import es.urjc.cloudapps.insurancecompany.clients.application.create.CreateClientCommand;
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.shared.ClientMapper;
+import es.urjc.cloudapps.insurancecompany.clients.shared.ClientMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public class ClientsPostController {
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PostMapping(path = "/clients", consumes = APPLICATION_JSON_VALUE, produces = TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> newPost(@RequestBody ClientDTO dto) {
+    public ResponseEntity<String> newPost(@RequestBody ClientDto dto) {
 
         final CreateClientCommand command = clientMapper.clientDtoToClientCommand(dto);
         clientCreator.create(command);

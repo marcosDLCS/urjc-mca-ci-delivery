@@ -12,7 +12,7 @@ public class IncidenceFinder {
 
     private final IncidenceRepository incidenceRepository;
 
-    public IncidenceFinder(IncidenceRepository incidenceRepository) {
+    public IncidenceFinder(final IncidenceRepository incidenceRepository) {
         this.incidenceRepository = incidenceRepository;
     }
 

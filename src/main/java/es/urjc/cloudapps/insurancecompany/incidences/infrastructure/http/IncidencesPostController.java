@@ -20,8 +20,7 @@ public class IncidencesPostController {
     private final IncidenceMapper incidenceMapper;
     private final IncidenceCreator incidenceCreator;
 
-
-    public IncidencesPostController(IncidenceCreator incidenceCreator) {
+    public IncidencesPostController(final IncidenceCreator incidenceCreator) {
         this.incidenceCreator = incidenceCreator;
         this.incidenceMapper = Mappers.getMapper(IncidenceMapper.class);
     }
@@ -34,5 +33,4 @@ public class IncidencesPostController {
         incidenceCreator.create(command);
         return new ResponseEntity<>("Incidence created", HttpStatus.ACCEPTED);
     }
-
 }

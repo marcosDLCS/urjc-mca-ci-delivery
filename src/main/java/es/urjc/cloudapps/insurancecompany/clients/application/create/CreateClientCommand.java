@@ -20,5 +20,4 @@ public class CreateClientCommand {
     private String street;
 
     private String number;
-
 }

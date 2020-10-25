@@ -1,6 +1,6 @@
 name: 'PR: Build, Test & Analysis'
 
-on: [pull_request]
+on: [ pull_request ]
 
 jobs:
   pull_request_build_analysis:

@@ -1,6 +1,6 @@
 package es.urjc.cloudapps.insurancecompany.integration;
 
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDTO;
+import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
 import es.urjc.cloudapps.insurancecompany.incidences.domain.IncidenceType;
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDTO;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.HouseDTO;
@@ -17,9 +17,9 @@ public final class IntegrationTestDataFactory {
         throw new java.lang.UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
 
-    public static ClientDTO getRandomClient() {
+    public static ClientDto getRandomClient() {
 
-        final ClientDTO randomClient = new ClientDTO();
+        final ClientDto randomClient = new ClientDto();
         randomClient.setName(RandomStringUtils.randomAlphabetic(10));
         randomClient.setSurname("rdm-surname");
         randomClient.setCountry("rdm-country");

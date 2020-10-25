@@ -11,7 +11,7 @@ public class ClientCreator {
 
     private final ClientRepository clientRepository;
 
-    public ClientCreator(ClientRepository clientRepository) {
+    public ClientCreator(final ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
 

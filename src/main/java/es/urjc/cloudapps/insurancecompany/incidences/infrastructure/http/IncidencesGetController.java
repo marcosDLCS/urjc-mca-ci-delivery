@@ -20,7 +20,7 @@ public class IncidencesGetController {
     private final IncidenceFinder incidenceFinder;
     private final IncidenceMapper incidenceMapper;
 
-    public IncidencesGetController(IncidenceFinder incidenceFinder) {
+    public IncidencesGetController(final IncidenceFinder incidenceFinder) {
         this.incidenceFinder = incidenceFinder;
         this.incidenceMapper = Mappers.getMapper(IncidenceMapper.class);
     }
@@ -28,9 +28,9 @@ public class IncidencesGetController {
     @GetMapping(path = "/incidences")
     public ResponseEntity<List<IncidenceDTO>> getAllIncidences() {
 
-        List<Incidence> insurances = incidenceFinder.findAll();
+        final List<Incidence> incidences = incidenceFinder.findAll();
 
-        final List<IncidenceDTO> dto = insurances.stream()
+        final List<IncidenceDTO> dto = incidences.stream()
                 .map(incidenceMapper::incidenceToIncidenceDTO).collect(Collectors.toList());
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
@@ -47,6 +47,4 @@ public class IncidencesGetController {
             return new ResponseEntity<>("Incidence not found", HttpStatus.NOT_FOUND);
         }
     }
-
-
 }

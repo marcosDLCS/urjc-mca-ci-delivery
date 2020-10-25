@@ -17,8 +17,10 @@ public class InsuranceCreator {
     private final ClientRepository clientRepository;
     private final CoverageRepository coverageRepository;
 
-    public InsuranceCreator(InsuranceRepository insuranceRepository, ClientRepository clientRepository,
-                            CoverageRepository coverageRepository) {
+    public InsuranceCreator(final InsuranceRepository insuranceRepository,
+                            final ClientRepository clientRepository,
+                            final CoverageRepository coverageRepository) {
+
         this.insuranceRepository = insuranceRepository;
         this.clientRepository = clientRepository;
         this.coverageRepository = coverageRepository;
@@ -73,6 +75,4 @@ public class InsuranceCreator {
         }
         return Boolean.TRUE;
     }
-
-
 }

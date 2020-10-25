@@ -1,6 +1,6 @@
 package es.urjc.cloudapps.insurancecompany.integration;
 
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDTO;
+import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDTO;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDTO;
 import io.restassured.RestAssured;
@@ -91,7 +91,7 @@ class IncidenceIntegrationTests {
 
     private InsuranceDTO getInsurance() throws JsonProcessingException {
 
-        final ClientDTO randomClient = getRandomClient();
+        final ClientDto randomClient = getRandomClient();
 
         with().body(objectMapper.writeValueAsString(randomClient))
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -100,8 +100,8 @@ class IncidenceIntegrationTests {
                 .then()
                 .statusCode(202);
 
-        final ClientDTO clientFromDb = Arrays.asList(
-                get("/clients").then().statusCode(200).and().extract().body().as(ClientDTO[].class))
+        final ClientDto clientFromDb = Arrays.asList(
+                get("/clients").then().statusCode(200).and().extract().body().as(ClientDto[].class))
                 .get(0);
 
         with().body(objectMapper.writeValueAsString(getRandomInsurance(clientFromDb.getId())))

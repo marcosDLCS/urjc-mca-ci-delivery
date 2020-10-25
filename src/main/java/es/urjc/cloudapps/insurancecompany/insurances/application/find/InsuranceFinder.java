@@ -12,7 +12,7 @@ public class InsuranceFinder {
 
     private final InsuranceRepository insuranceRepository;
 
-    public InsuranceFinder(InsuranceRepository insuranceRepository) {
+    public InsuranceFinder(final InsuranceRepository insuranceRepository) {
         this.insuranceRepository = insuranceRepository;
     }
 

@@ -1,6 +1,6 @@
 package es.urjc.cloudapps.insurancecompany.integration;
 
-import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDTO;
+import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDTO;
 import io.restassured.RestAssured;
 import lombok.extern.slf4j.Slf4j;
@@ -88,9 +88,9 @@ class InsuranceIntegrationTests {
         return Arrays.asList(get("/insurances").then().statusCode(200).and().extract().body().as(InsuranceDTO[].class));
     }
 
-    private ClientDTO getClient() throws JsonProcessingException {
+    private ClientDto getClient() throws JsonProcessingException {
 
-        final ClientDTO randomClient = getRandomClient();
+        final ClientDto randomClient = getRandomClient();
 
         with().body(objectMapper.writeValueAsString(randomClient))
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -100,7 +100,7 @@ class InsuranceIntegrationTests {
                 .statusCode(202);
 
         return Arrays.asList(
-                get("/clients").then().statusCode(200).and().extract().body().as(ClientDTO[].class))
+                get("/clients").then().statusCode(200).and().extract().body().as(ClientDto[].class))
                 .get(0);
     }
 
