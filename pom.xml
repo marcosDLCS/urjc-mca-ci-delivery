@@ -6,13 +6,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.0-M4</version>
+        <version>2.4.0-RC1</version>
         <relativePath/>
     </parent>
 
     <groupId>es.urjc.cloudapps</groupId>
     <artifactId>insurance-company</artifactId>
-    <version>6.0.0</version>
+    <version>7.0.0</version>
     <name>insurance-company</name>
     <description>Práctica. Integración y entrega continua. URJC Máster Cloud Apps</description>
 
@@ -267,6 +267,7 @@
             </snapshots>
         </repository>
     </repositories>
+
     <pluginRepositories>
         <pluginRepository>
             <id>spring-milestones</id>
@@ -274,6 +275,5 @@
             <url>https://repo.spring.io/milestone</url>
         </pluginRepository>
     </pluginRepositories>
-
 
 </project>

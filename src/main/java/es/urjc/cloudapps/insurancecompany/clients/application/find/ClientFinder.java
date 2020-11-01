@@ -28,7 +28,8 @@ public class ClientFinder {
     }
 
     private ClientFinderResponse fromClientToClientResponse(final Client client) {
-        final var builder = ClientFinderResponse.builder()
+
+        final ClientFinderResponse.Builder builder = ClientFinderResponse.builder()
                 .id(client.getId().getId())
                 .name(client.getName())
                 .surname(client.getSurname());
@@ -40,7 +41,6 @@ public class ClientFinder {
                     .street(client.getAddress().getStreet())
                     .number(client.getAddress().getNumber());
         }
-
         return builder.build();
     }
 }

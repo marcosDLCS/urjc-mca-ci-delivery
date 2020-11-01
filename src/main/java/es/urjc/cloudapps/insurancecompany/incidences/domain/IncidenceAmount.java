@@ -15,6 +15,8 @@ public class IncidenceAmount {
 
     public IncidenceAmount(final BigDecimal amount, final String currency) {
 
+        // TODO: Use non-framework utils to ensure domain properties
+
         Assert.isTrue(amount != null, "Amount must not be null");
         Assert.isTrue(amount.compareTo(BigDecimal.ZERO) > 0, "Amount must be positive");
         Assert.isTrue(!StringUtils.isEmpty(currency), "Currency string must not be null or empty");

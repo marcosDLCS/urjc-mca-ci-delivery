@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PostgresIncidenceEntityRepository extends JpaRepository<IncidenceEntity, String> {
-    // H2IncidenceEntityRepository
+    // PostgresIncidenceEntityRepository
 
     List<IncidenceEntity> findByInsurance(InsuranceEntity insurance);
 }

@@ -26,6 +26,9 @@ public class InsuranceFinder {
     }
 
     private InsuranceFinderResponse fromInsuranceToInsuranceResponse(final Insurance insurance) {
+
+        // TODO: Tell don´t ask
+
         final var builder = InsuranceFinderResponse.builder()
                 .id(insurance.getId() != null ? insurance.getId().getId() : null)
                 .clientId(insurance.getClientId() != null ? insurance.getClientId().getId() : null);

@@ -10,6 +10,8 @@ public class CoverageIncidence {
 
     public CoverageIncidence(final CoverageIncidenceId id) {
 
+        // TODO: Use non-framework utils to ensure domain properties
+
         Assert.isTrue(id != null, "Incidence id must not be null");
 
         this.id = id;

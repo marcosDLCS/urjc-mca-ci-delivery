@@ -28,6 +28,8 @@ public class IncidenceCreator {
 
     public void create(final CreateIncidenceCommand command) {
 
+        // TODO: Use non-framework utils to ensure domain properties
+
         Assert.isTrue(insuranceExists(command.getInsuranceId()), "Incidence insurance must exist");
         Assert.isTrue(coverageIncidenceExists(command.getIncidenceType()), "Incidence type must exist");
 

@@ -2,8 +2,9 @@ package es.urjc.cloudapps.insurancecompany.incidences.domain;
 
 import es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceId;
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 
+import javax.money.CurrencyUnit;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Incidence {
@@ -25,11 +26,14 @@ public class Incidence {
     public Incidence(final IncidenceId id, final InsuranceId insuranceId, final CoverageIncidence coverageIncidence,
                      final IncidenceAmount amount, final IncidenceStatus status, final String description) {
 
+        // TODO: Use non-framework utils to ensure domain properties
+
         Assert.isTrue(id != null, "Incidence id must not be null");
         Assert.isTrue(insuranceId != null, "Incidence insurance id must not be null");
         Assert.isTrue(coverageIncidence != null, "Incidence coverage incidence must not be null");
         Assert.isTrue(amount != null, "Incidence amount must not be null");
-        Assert.isTrue(!StringUtils.isEmpty(description), "Incidence description must not be null");
+        Assert.isTrue(description != null && !description.isBlank(),
+                "Incidence description must not be null");
 
         this.id = id;
         this.insuranceId = insuranceId;
@@ -44,8 +48,24 @@ public class Incidence {
         return id;
     }
 
+    public String getIdAsString() {
+        if (this.id != null) {
+            return this.id.getId();
+        } else {
+            return null;
+        }
+    }
+
     public InsuranceId getInsuranceId() {
         return insuranceId;
+    }
+
+    public String getInsuranceIdAsString() {
+        if (this.insuranceId != null && this.insuranceId.getId() != null) {
+            return this.insuranceId.getId();
+        } else {
+            return null;
+        }
     }
 
     public LocalDateTime getDate() {
@@ -60,12 +80,32 @@ public class Incidence {
         return coverageIncidence;
     }
 
+    public String getCoverageIncidenceIdAsString() {
+        if (this.coverageIncidence != null && this.coverageIncidence.getId() != null) {
+            return this.coverageIncidence.getId().getId();
+        } else {
+            return null;
+        }
+    }
+
     public IncidenceAmount getAmount() {
         return amount;
     }
 
+    public BigDecimal getAmountValue() {
+        return this.amount != null ? this.amount.getAmount() : null;
+    }
+
+    public CurrencyUnit getAmountCurrency() {
+        return this.amount != null ? this.amount.getCurrency() : null;
+    }
+
     public IncidenceStatus getStatus() {
         return status;
+    }
+
+    public String getStatusAsString() {
+        return this.status != null ? this.status.name() : null;
     }
 
     public void accept() {

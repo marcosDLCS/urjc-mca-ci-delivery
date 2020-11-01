@@ -1,7 +1,6 @@
 package es.urjc.cloudapps.insurancecompany.clients.domain;
 
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 
 public class Client {
 
@@ -15,9 +14,11 @@ public class Client {
 
     public Client(final ClientId id, final String name, final String surname, final ClientAddress address) {
 
+        // TODO: Use non-framework utils to ensure domain properties
+
         Assert.isTrue(id != null, "Client id must not be null");
-        Assert.isTrue(!StringUtils.isEmpty(name), "Client name must not be null or empty");
-        Assert.isTrue(!StringUtils.isEmpty(surname), "Client surname must not be null or empty");
+        Assert.isTrue(name != null && !name.isBlank(), "Client name must not be null or empty");
+        Assert.isTrue(surname != null && !surname.isBlank(), "Client surname must not be null or empty");
         Assert.isTrue(address != null, "Client address must not be null");
 
         this.id = id;
@@ -28,6 +29,14 @@ public class Client {
 
     public ClientId getId() {
         return id;
+    }
+
+    public String getIdAsString() {
+        if (this.id != null) {
+            return this.id.getId();
+        } else {
+            return null;
+        }
     }
 
     public String getName() {

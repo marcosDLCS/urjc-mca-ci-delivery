@@ -29,15 +29,14 @@ public class IncidenceFinder {
 
     private IncidenceFinderResponse fromIncidenceToIncidenceResponse(final Incidence incidence) {
         return IncidenceFinderResponse.builder()
-                .id(incidence.getId() != null ? incidence.getId().getId() : null)
-                .insuranceId(incidence.getInsuranceId() != null ? incidence.getInsuranceId().getId() : null)
+                .id(incidence.getIdAsString())
+                .insuranceId(incidence.getInsuranceIdAsString())
                 .date(incidence.getDate())
                 .description(incidence.getDescription())
-                .coverageIncidence(incidence.getCoverageIncidence() != null ?
-                        incidence.getCoverageIncidence().getId().getId() : null)
-                .amount(incidence.getAmount() != null ? incidence.getAmount().getAmount() : null)
-                .currency(incidence.getAmount() != null ? incidence.getAmount().getCurrency() : null)
-                .status(incidence.getStatus() != null ? incidence.getStatus().name() : null)
+                .coverageIncidence(incidence.getCoverageIncidenceIdAsString())
+                .amount(incidence.getAmountValue())
+                .currency(incidence.getAmountCurrency())
+                .status(incidence.getStatusAsString())
                 .build();
     }
 }
