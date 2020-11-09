@@ -37,8 +37,24 @@ public class Insurance {
         return id;
     }
 
+    public String getIdAsString() {
+        if (this.id != null) {
+            return this.id.getId();
+        } else {
+            return null;
+        }
+    }
+
     public ClientId getClientId() {
         return clientId;
+    }
+
+    public String getClientIdAsString() {
+        if (this.clientId != null && this.clientId.getId() != null) {
+            return this.clientId.getId();
+        } else {
+            return null;
+        }
     }
 
     public LocalDateTime getDate() {

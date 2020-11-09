@@ -10,7 +10,7 @@ import java.util.UUID;
 public final class ClientTestDataFactory {
 
     private ClientTestDataFactory() {
-        throw new java.lang.UnsupportedOperationException("This is a utility class and cannot be instantiated");
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
 
     public static ClientId getValidClientId() {
