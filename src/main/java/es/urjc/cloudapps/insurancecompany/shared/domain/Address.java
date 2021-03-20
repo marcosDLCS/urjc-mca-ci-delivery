@@ -17,7 +17,7 @@ public class Address {
     public Address(final String country, final String city, final String postalCode, final String street,
                    final String number) {
 
-        // TODO: Use non-framework utils to ensure domain properties
+        // -> Use non-framework utils to ensure domain properties
 
         Assert.isTrue(country != null && !country.isBlank(), "Country must not be null or empty");
         Assert.isTrue(city != null && !city.isBlank(), "City must not be null or empty");

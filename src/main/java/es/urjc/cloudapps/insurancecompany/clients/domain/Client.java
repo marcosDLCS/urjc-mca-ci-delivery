@@ -14,7 +14,7 @@ public class Client {
 
     public Client(final ClientId id, final String name, final String surname, final ClientAddress address) {
 
-        // TODO: Use non-framework utils to ensure domain properties
+        // -> Use non-framework utils to ensure domain properties
 
         Assert.isTrue(id != null, "Client id must not be null");
         Assert.isTrue(name != null && !name.isBlank(), "Client name must not be null or empty");

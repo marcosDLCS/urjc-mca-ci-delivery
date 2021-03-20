@@ -26,7 +26,7 @@ public class Incidence {
     public Incidence(final IncidenceId id, final InsuranceId insuranceId, final CoverageIncidence coverageIncidence,
                      final IncidenceAmount amount, final IncidenceStatus status, final String description) {
 
-        // TODO: Use non-framework utils to ensure domain properties
+        // -> Use non-framework utils to ensure domain properties
 
         Assert.isTrue(id != null, "Incidence id must not be null");
         Assert.isTrue(insuranceId != null, "Incidence insurance id must not be null");

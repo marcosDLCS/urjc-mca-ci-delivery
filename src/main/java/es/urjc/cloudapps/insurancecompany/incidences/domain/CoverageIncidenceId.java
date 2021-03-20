@@ -9,7 +9,7 @@ public class CoverageIncidenceId {
 
     public CoverageIncidenceId(final String id) {
 
-        // TODO: Use non-framework utils to ensure domain properties
+        // -> Use non-framework utils to ensure domain properties
 
         Assert.isTrue(!StringUtils.isEmpty(id), "Coverage id must not be null or empty");
 
