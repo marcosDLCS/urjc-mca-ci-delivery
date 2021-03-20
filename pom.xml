@@ -25,7 +25,7 @@
         <pitest-junit5.version>0.12</pitest-junit5.version>
         <owasp.version>6.0.3</owasp.version>
         <jacoco.version>0.8.6</jacoco.version>
-        <mapstruct.version>1.4.1.Final</mapstruct.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
         <java-money.version>1.4.2</java-money.version>
         <apache-commons-lang.version>3.11</apache-commons-lang.version>
     </properties>
