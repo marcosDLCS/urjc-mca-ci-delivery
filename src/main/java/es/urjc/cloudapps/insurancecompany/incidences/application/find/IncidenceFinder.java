@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static es.urjc.cloudapps.insurancecompany.incidences.application.find.IncidenceFinderMapper.incidenceToIncidenceFinderResponse;
+
 @Service
 public class IncidenceFinder {
 
@@ -19,25 +21,13 @@ public class IncidenceFinder {
 
     public List<IncidenceFinderResponse> findAll() {
         final List<Incidence> incidences = incidenceRepository.findAll();
-        return incidences.stream().map(this::fromIncidenceToIncidenceResponse).collect(Collectors.toList());
+        return incidences.stream()
+                .map(IncidenceFinderMapper::incidenceToIncidenceFinderResponse)
+                .collect(Collectors.toList());
     }
 
     public IncidenceFinderResponse findOne(final String id) {
         final Incidence incidence = incidenceRepository.findOne(new IncidenceId(id));
-        return fromIncidenceToIncidenceResponse(incidence);
-    }
-
-    private IncidenceFinderResponse fromIncidenceToIncidenceResponse(final Incidence incidence) {
-        return IncidenceFinderResponse.builder()
-                .id(incidence.getId() != null ? incidence.getId().getId() : null)
-                .insuranceId(incidence.getInsuranceId() != null ? incidence.getInsuranceId().getId() : null)
-                .date(incidence.getDate())
-                .description(incidence.getDescription())
-                .coverageIncidence(incidence.getCoverageIncidence() != null ?
-                        incidence.getCoverageIncidence().getId().getId() : null)
-                .amount(incidence.getAmount() != null ? incidence.getAmount().getAmount() : null)
-                .currency(incidence.getAmount() != null ? incidence.getAmount().getCurrency() : null)
-                .status(incidence.getStatus() != null ? incidence.getStatus().name() : null)
-                .build();
+        return incidenceToIncidenceFinderResponse(incidence);
     }
 }

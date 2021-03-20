@@ -13,5 +13,4 @@ public interface IncidenceRepository {
     List<Incidence> findByInsuranceId(InsuranceId insuranceId);
 
     void save(Incidence incidence);
-
 }

@@ -11,5 +11,4 @@ public interface InsuranceRepository {
     Insurance findByHouseRegistry(HouseRegistry registry);
 
     void save(Insurance client);
-
 }

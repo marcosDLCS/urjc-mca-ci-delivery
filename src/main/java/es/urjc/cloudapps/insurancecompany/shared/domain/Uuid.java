@@ -1,7 +1,6 @@
 package es.urjc.cloudapps.insurancecompany.shared.domain;
 
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 
 import java.util.UUID;
 
@@ -11,7 +10,7 @@ public class Uuid {
 
     public Uuid(final String id) {
 
-        Assert.isTrue(!StringUtils.isEmpty(id), "Uuid must not be null or empty");
+        Assert.isTrue(id != null && !id.isBlank(), "Uuid must not be null or empty");
         Assert.isTrue(Uuid.validUuid(id), "Uuid must have the correct format");
 
         this.id = id;

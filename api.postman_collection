@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "c6d16111-fb55-477a-8225-a4a310233982",
+    "_postman_id": "76809039-ea68-4dc1-9069-d6bf385981e2",
     "name": "urjc_mca_ddd_cqrs",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -19,7 +19,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n\t\"name\": \"Inmaculada\",\n\t\"surname\": \"San Miguel\",\n\t\"country\": \"Spain\",\n\t\"city\": \"Arroyo de la Encomienda\",\n\t\"postalCode\": \"47012\",\n\t\"street\": \"Pza. Circular\",\n\t\"number\": \"103\"\n}",
+          "raw": "{\n\t\"name\": \"{{$randomFirstName}}\",\n\t\"surname\": \"{{$randomLastName}}\",\n\t\"country\": \"{{$randomCountry}}\",\n\t\"city\": \"{{$randomCity}}\",\n\t\"postalCode\": \"{{$randomPassword}}\",\n\t\"street\": \"{{$randomStreetName}}\",\n\t\"number\": \"{{$randomInt}}\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -107,7 +107,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"clientId\": \"341abbbb-a750-4e1c-9828-26b9a50d59ac\",\n    \"house\": {\n        \"registry\": \"REG-12345678902\",\n        \"country\": \"Spain\",\n        \"city\": \"Valladolid\",\n        \"postalCode\": \"47009\",\n        \"street\": \"C/Falsa\",\n        \"number\": \"123\"\n    },\n    \"coverages\":[\n    \t\"WINDOWS_COVERAGE\",\n    \t\"ELECTRONIC_DEVICES_COVERAGE\"\n    ]\n}",
+          "raw": "{\n    \"clientId\": \"341abbbb-a750-4e1c-9828-26b9a50d59ac\",\n    \"house\": {\n        \"registry\": \"REG-{{$randomInt}}\",\n        \"country\": \"{{$randomCountry}}\",\n        \"city\": \"{{$randomCity}}\",\n        \"postalCode\": \"{{$randomPassword}}\",\n        \"street\": \"{{$randomStreetName}}\",\n        \"number\": \"{{$randomInt}}\"\n    },\n    \"coverages\":[\n    \t\"WINDOWS_COVERAGE\",\n    \t\"ELECTRONIC_DEVICES_COVERAGE\"\n    ]\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -195,7 +195,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"insuranceId\": \"e543deed-ba08-4e0b-ace7-a7d51ff1dcf4\",\n    \"incidenceType\": \"EARTHQUAKE\",\n    \"description\": \"Everything is broken. I need my money! Mooooney! MOOOORE!\",\n    \"amount\": \"567.96\",\n    \"currency\": \"EUR\"\n}",
+          "raw": "{\n    \"insuranceId\": \"e543deed-ba08-4e0b-ace7-a7d51ff1dcf4\",\n    \"incidenceType\": \"EARTHQUAKE\",\n    \"description\": \"{{$randomPhrase}}\",\n    \"amount\": \"{{$randomPrice}}\",\n    \"currency\": \"EUR\"\n}",
           "options": {
             "raw": {
               "language": "json"
