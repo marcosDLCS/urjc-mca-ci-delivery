@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 public class PostgresInsuranceRepository implements InsuranceRepository {
 
     private final PostgresInsuranceEntityRepository postgresInsuranceEntityRepository;
-    private final InsuranceMapper insuranceMapper;
+    private final InsuranceMapper                   insuranceMapper;
 
     public PostgresInsuranceRepository(PostgresInsuranceEntityRepository postgresInsuranceEntityRepository) {
         this.postgresInsuranceEntityRepository = postgresInsuranceEntityRepository;
-        this.insuranceMapper = Mappers.getMapper(InsuranceMapper.class);
+        this.insuranceMapper                   = Mappers.getMapper(InsuranceMapper.class);
     }
 
     @Override

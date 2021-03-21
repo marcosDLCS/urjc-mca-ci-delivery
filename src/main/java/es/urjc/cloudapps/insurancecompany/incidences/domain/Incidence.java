@@ -1,7 +1,6 @@
 package es.urjc.cloudapps.insurancecompany.incidences.domain;
 
 import es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceId;
-import org.springframework.util.Assert;
 
 import javax.money.CurrencyUnit;
 import java.math.BigDecimal;
@@ -25,23 +24,40 @@ public class Incidence {
 
     public Incidence(final IncidenceId id, final InsuranceId insuranceId, final CoverageIncidence coverageIncidence,
                      final IncidenceAmount amount, final IncidenceStatus status, final String description) {
+        ensureIdIsPresent(id);
+        ensureInsuranceIdIsPresent(insuranceId);
+        ensureCoverageIncidenceIsPresent(coverageIncidence);
+        ensureAmountIsPresent(amount);
+        ensureDescriptionIsPresent(description);
 
-        // -> Use non-framework utils to ensure domain properties
-
-        Assert.isTrue(id != null, "Incidence id must not be null");
-        Assert.isTrue(insuranceId != null, "Incidence insurance id must not be null");
-        Assert.isTrue(coverageIncidence != null, "Incidence coverage incidence must not be null");
-        Assert.isTrue(amount != null, "Incidence amount must not be null");
-        Assert.isTrue(description != null && !description.isBlank(),
-                "Incidence description must not be null");
-
-        this.id = id;
-        this.insuranceId = insuranceId;
-        this.date = LocalDateTime.now();
+        this.id                = id;
+        this.insuranceId       = insuranceId;
+        this.date              = LocalDateTime.now();
         this.coverageIncidence = coverageIncidence;
-        this.amount = amount;
-        this.description = description;
-        this.status = status;
+        this.amount            = amount;
+        this.description       = description;
+        this.status            = status;
+    }
+
+    private static void ensureIdIsPresent(final IncidenceId id) {
+        if (id == null) throw new IllegalArgumentException("Incidence id must not be null");
+    }
+
+    private static void ensureInsuranceIdIsPresent(final InsuranceId id) {
+        if (id == null) throw new IllegalArgumentException("Incidence insurance id must not be null");
+    }
+
+    private static void ensureCoverageIncidenceIsPresent(final CoverageIncidence ci) {
+        if (ci == null) throw new IllegalArgumentException("Incidence coverage incidence must not be null");
+    }
+
+    private static void ensureAmountIsPresent(final IncidenceAmount ia) {
+        if (ia == null) throw new IllegalArgumentException("Incidence amount must not be null");
+    }
+
+    private static void ensureDescriptionIsPresent(final String desc) {
+        if (desc == null || desc.isBlank())
+            throw new IllegalArgumentException("Incidence description must not be null");
     }
 
     public IncidenceId getId() {

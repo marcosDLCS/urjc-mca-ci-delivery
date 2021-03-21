@@ -16,12 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ClientTest {
 
-    private ClientId validClientId;
+    private ClientId      validClientId;
     private ClientAddress validClientAddress;
 
     @BeforeEach
     void setup() {
-        this.validClientId = getValidClientId();
+        this.validClientId      = getValidClientId();
         this.validClientAddress = getValidClientAddress();
     }
 

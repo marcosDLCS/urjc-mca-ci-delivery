@@ -18,7 +18,7 @@ final class InsuranceFinderMapper {
                 .id(insurance.getIdAsString())
                 .clientId(insurance.getClientIdAsString());
 
-        final var house = insurance.getHouse();
+        final var    house        = insurance.getHouse();
         HouseAddress houseAddress = null;
 
         if (house != null) {

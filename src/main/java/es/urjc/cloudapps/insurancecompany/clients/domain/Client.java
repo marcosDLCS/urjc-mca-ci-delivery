@@ -1,7 +1,5 @@
 package es.urjc.cloudapps.insurancecompany.clients.domain;
 
-import org.springframework.util.Assert;
-
 public class Client {
 
     private final ClientId id;
@@ -13,18 +11,31 @@ public class Client {
     private final ClientAddress address;
 
     public Client(final ClientId id, final String name, final String surname, final ClientAddress address) {
+        ensureIdIsPresent(id);
+        ensureNameIsPresent(name);
+        ensureSurnameIsPresent(surname);
+        ensureAddressIsPresent(address);
 
-        // -> Use non-framework utils to ensure domain properties
-
-        Assert.isTrue(id != null, "Client id must not be null");
-        Assert.isTrue(name != null && !name.isBlank(), "Client name must not be null or empty");
-        Assert.isTrue(surname != null && !surname.isBlank(), "Client surname must not be null or empty");
-        Assert.isTrue(address != null, "Client address must not be null");
-
-        this.id = id;
-        this.name = name;
+        this.id      = id;
+        this.name    = name;
         this.surname = surname;
         this.address = address;
+    }
+
+    private static void ensureIdIsPresent(final ClientId id) {
+        if (id == null) throw new IllegalArgumentException("Client id must not be null");
+    }
+
+    private static void ensureNameIsPresent(final String name) {
+        if (name == null || name.isBlank()) throw new IllegalArgumentException("Client name must not be null or empty");
+    }
+
+    private static void ensureSurnameIsPresent(final String sn) {
+        if (sn == null || sn.isBlank()) throw new IllegalArgumentException("Client surname must not be null or empty");
+    }
+
+    private static void ensureAddressIsPresent(final ClientAddress addr) {
+        if (addr == null) throw new IllegalArgumentException("Client address must not be null");
     }
 
     public ClientId getId() {
@@ -51,4 +62,13 @@ public class Client {
         return address;
     }
 
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", address=" + address +
+                '}';
+    }
 }

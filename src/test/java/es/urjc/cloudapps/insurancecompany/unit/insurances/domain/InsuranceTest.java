@@ -21,18 +21,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InsuranceTest {
 
-    private ClientId validClientId;
-    private House validHouse;
-    private InsuranceId validInsuranceId;
-    private Set<Coverage> validCoverages;
+    private       ClientId      validClientId;
+    private       House         validHouse;
+    private       InsuranceId   validInsuranceId;
+    private       Set<Coverage> validCoverages;
     private final Set<Coverage> emptyCoverages = Collections.emptySet();
 
     @BeforeEach
     void setup() {
-        this.validClientId = getValidClientId();
-        this.validHouse = getValidHouse();
+        this.validClientId    = getValidClientId();
+        this.validHouse       = getValidHouse();
         this.validInsuranceId = getValidInsuranceId();
-        this.validCoverages = geValidCoverages();
+        this.validCoverages   = geValidCoverages();
     }
 
     @Test

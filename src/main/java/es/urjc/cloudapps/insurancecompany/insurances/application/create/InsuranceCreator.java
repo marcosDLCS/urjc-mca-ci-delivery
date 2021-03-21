@@ -5,7 +5,6 @@ import es.urjc.cloudapps.insurancecompany.clients.domain.ClientId;
 import es.urjc.cloudapps.insurancecompany.clients.domain.ClientRepository;
 import es.urjc.cloudapps.insurancecompany.insurances.domain.*;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,25 +13,22 @@ import java.util.stream.Collectors;
 public class InsuranceCreator {
 
     private final InsuranceRepository insuranceRepository;
-    private final ClientRepository clientRepository;
-    private final CoverageRepository coverageRepository;
+    private final ClientRepository    clientRepository;
+    private final CoverageRepository  coverageRepository;
 
     public InsuranceCreator(final InsuranceRepository insuranceRepository,
                             final ClientRepository clientRepository,
                             final CoverageRepository coverageRepository) {
 
         this.insuranceRepository = insuranceRepository;
-        this.clientRepository = clientRepository;
-        this.coverageRepository = coverageRepository;
+        this.clientRepository    = clientRepository;
+        this.coverageRepository  = coverageRepository;
     }
 
     public void create(final CreateInsuranceCommand command) {
-
-        Assert.isTrue(clientExists(command.getClientId()), "Client does not exist");
-        Assert.isTrue(houseRegistryNotExists(command.getHouseRegistry()),
-                "There is another insurance with the same house registry");
-        Assert.isTrue(coveragesExists(command.getCoverages()),
-                "There is another insurance with the same house registry");
+        ensureClientExists(command.getClientId());
+        ensureHouseRegistryNotExists(command.getHouseRegistry());
+        ensureCoveragesExists(command.getCoverages());
 
         final Insurance insurance = new Insurance(
                 new InsuranceId(),
@@ -53,26 +49,20 @@ public class InsuranceCreator {
         insuranceRepository.save(insurance);
     }
 
-    private boolean clientExists(final String id) {
-
+    private void ensureClientExists(final String id) {
         final Client client = clientRepository.findOne(new ClientId(id));
-        return client != null;
+        if (client == null) throw new IllegalArgumentException("Client does not exist");
     }
 
-    private boolean houseRegistryNotExists(final String registry) {
-
+    private void ensureHouseRegistryNotExists(final String registry) {
         final Insurance insurance = insuranceRepository.findByHouseRegistry(new HouseRegistry(registry));
-        return insurance == null;
+        if (insurance != null)
+            throw new IllegalArgumentException("There is another insurance with the same house registry");
     }
 
-    private boolean coveragesExists(final Set<String> coverages) {
-
-        for (String coverageId : coverages) {
-            Coverage coverageFromDb = coverageRepository.findById(coverageId);
-            if (coverageFromDb == null) {
-                return Boolean.FALSE;
-            }
+    private void ensureCoveragesExists(final Set<String> coverages) {
+        for (String cId : coverages) {
+            if (coverageRepository.findById(cId) == null) throw new IllegalArgumentException("Coverage does not exist");
         }
-        return Boolean.TRUE;
     }
 }

@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 public class PostgresIncidenceRepository implements IncidenceRepository {
 
     private final PostgresIncidenceEntityRepository postgresIncidenceEntityRepository;
-    private final IncidenceMapper incidenceMapper;
+    private final IncidenceMapper                   incidenceMapper;
 
     public PostgresIncidenceRepository(PostgresIncidenceEntityRepository postgresIncidenceEntityRepository) {
         this.postgresIncidenceEntityRepository = postgresIncidenceEntityRepository;
-        this.incidenceMapper = Mappers.getMapper(IncidenceMapper.class);
+        this.incidenceMapper                   = Mappers.getMapper(IncidenceMapper.class);
     }
 
     @Override

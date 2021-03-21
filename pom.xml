@@ -12,7 +12,7 @@
 
     <groupId>es.urjc.cloudapps</groupId>
     <artifactId>insurance-company</artifactId>
-    <version>8.0.0</version>
+    <version>9.0.0</version>
     <name>insurance-company</name>
     <description>Práctica. Integración y entrega continua. URJC Máster Cloud Apps</description>
 
@@ -27,7 +27,6 @@
         <jacoco.version>0.8.6</jacoco.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <java-money.version>1.4.2</java-money.version>
-        <apache-commons-lang.version>3.11</apache-commons-lang.version>
     </properties>
 
     <dependencyManagement>
@@ -92,12 +91,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${apache-commons-lang.version}</version>
         </dependency>
 
         <dependency>

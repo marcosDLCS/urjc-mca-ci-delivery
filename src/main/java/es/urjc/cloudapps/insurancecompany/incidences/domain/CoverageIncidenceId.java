@@ -1,19 +1,16 @@
 package es.urjc.cloudapps.insurancecompany.incidences.domain;
 
-import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
-
 public class CoverageIncidenceId {
 
     private final String id;
 
     public CoverageIncidenceId(final String id) {
-
-        // -> Use non-framework utils to ensure domain properties
-
-        Assert.isTrue(!StringUtils.isEmpty(id), "Coverage id must not be null or empty");
-
+        ensureIdIsPresent(id);
         this.id = id;
+    }
+
+    private static void ensureIdIsPresent(final String id) {
+        if (id == null || id.isBlank()) throw new IllegalArgumentException("Coverage id must not be null or empty");
     }
 
     public String getId() {

@@ -17,12 +17,12 @@ import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
 @RestController
 public class IncidencesPostController {
 
-    private final IncidenceMapper incidenceMapper;
+    private final IncidenceMapper  incidenceMapper;
     private final IncidenceCreator incidenceCreator;
 
     public IncidencesPostController(final IncidenceCreator incidenceCreator) {
         this.incidenceCreator = incidenceCreator;
-        this.incidenceMapper = Mappers.getMapper(IncidenceMapper.class);
+        this.incidenceMapper  = Mappers.getMapper(IncidenceMapper.class);
     }
 
     @ResponseStatus(HttpStatus.ACCEPTED)

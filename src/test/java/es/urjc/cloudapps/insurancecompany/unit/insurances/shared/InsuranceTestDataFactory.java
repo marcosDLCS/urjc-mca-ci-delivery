@@ -55,7 +55,7 @@ public final class InsuranceTestDataFactory {
                 .id(insurance.getId() != null ? insurance.getId().getId() : null)
                 .clientId(insurance.getClientId() != null ? insurance.getClientId().getId() : null);
 
-        final var house = insurance.getHouse();
+        final var    house        = insurance.getHouse();
         HouseAddress houseAddress = null;
 
         if (house != null) {

@@ -1,7 +1,6 @@
 package es.urjc.cloudapps.insurancecompany.insurances.domain;
 
 import es.urjc.cloudapps.insurancecompany.clients.domain.ClientId;
-import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -19,18 +18,37 @@ public class Insurance {
     private final Set<Coverage> coverages;
 
     public Insurance(final InsuranceId id, final ClientId clientId, final House house, final Set<Coverage> coverages) {
+        ensureIdIsPresent(id);
+        ensureClientIdIsPresent(clientId);
+        ensureHouseIsPresent(house);
+        ensureCoveragesArePresent(coverages);
+        ensureCoveragesAreNotEmpty(coverages);
 
-        Assert.isTrue(id != null, "Insurance id must not be null");
-        Assert.isTrue(clientId != null, "Insurance client id must not be null");
-        Assert.isTrue(house != null, "Insurance house must not be null");
-        Assert.isTrue(coverages != null, "Insurance coverages must not be null");
-        Assert.isTrue(!coverages.isEmpty(), "Insurance coverages must not be empty");
-
-        this.id = id;
-        this.clientId = clientId;
-        this.date = LocalDateTime.now();
-        this.house = house;
+        this.id        = id;
+        this.clientId  = clientId;
+        this.date      = LocalDateTime.now();
+        this.house     = house;
         this.coverages = coverages;
+    }
+
+    private static void ensureIdIsPresent(final InsuranceId id) {
+        if (id == null) throw new IllegalArgumentException("Insurance id must not be null");
+    }
+
+    private static void ensureClientIdIsPresent(final ClientId id) {
+        if (id == null) throw new IllegalArgumentException("Insurance client id must not be null");
+    }
+
+    private static void ensureHouseIsPresent(final House hs) {
+        if (hs == null) throw new IllegalArgumentException("Insurance house must not be null");
+    }
+
+    private static void ensureCoveragesArePresent(final Set<Coverage> cov) {
+        if (cov == null) throw new IllegalArgumentException("Insurance coverages must not be null");
+    }
+
+    private static void ensureCoveragesAreNotEmpty(final Set<Coverage> cov) {
+        if (cov.isEmpty()) throw new IllegalArgumentException("Insurance coverages must not be empty");
     }
 
     public InsuranceId getId() {
@@ -67,5 +85,16 @@ public class Insurance {
 
     public Set<Coverage> getCoverages() {
         return coverages;
+    }
+
+    @Override
+    public String toString() {
+        return "Insurance{" +
+                "id=" + id +
+                ", clientId=" + clientId +
+                ", date=" + date +
+                ", house=" + house +
+                ", coverages=" + coverages +
+                '}';
     }
 }

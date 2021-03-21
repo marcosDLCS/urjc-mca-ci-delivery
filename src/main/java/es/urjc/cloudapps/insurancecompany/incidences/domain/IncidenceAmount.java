@@ -1,8 +1,5 @@
 package es.urjc.cloudapps.insurancecompany.incidences.domain;
 
-import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
-
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;
 import java.math.BigDecimal;
@@ -14,16 +11,34 @@ public class IncidenceAmount {
     private final CurrencyUnit currency;
 
     public IncidenceAmount(final BigDecimal amount, final String currency) {
+        ensureAmountIsPresent(amount);
+        ensureAmountIsPositive(amount);
+        ensureCurrencyIsPresent(currency);
+        ensureCurrencyIsValid(currency);
 
-        // -> Use non-framework utils to ensure domain properties
-
-        Assert.isTrue(amount != null, "Amount must not be null");
-        Assert.isTrue(amount.compareTo(BigDecimal.ZERO) > 0, "Amount must be positive");
-        Assert.isTrue(!StringUtils.isEmpty(currency), "Currency string must not be null or empty");
-        Assert.isTrue(ensureCurrencyIsValid(currency), "Currency must be valid");
-
-        this.amount = amount;
+        this.amount   = amount;
         this.currency = Monetary.getCurrency(currency);
+    }
+
+    private static void ensureAmountIsPresent(final BigDecimal amount) {
+        if (amount == null) throw new IllegalArgumentException("Amount must not be null");
+    }
+
+    private static void ensureAmountIsPositive(final BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) < 1) throw new IllegalArgumentException("Amount must be positive");
+    }
+
+    private static void ensureCurrencyIsPresent(final String cur) {
+        if (cur == null || cur.isBlank())
+            throw new IllegalArgumentException("Currency string must not be null or empty");
+    }
+
+    private static void ensureCurrencyIsValid(final String cur) {
+        try {
+            Monetary.getCurrency(cur);
+        } catch (final Exception e) {
+            throw new IllegalArgumentException("Currency must be valid");
+        }
     }
 
     public BigDecimal getAmount() {
@@ -40,13 +55,5 @@ public class IncidenceAmount {
                 "amount=" + amount +
                 ", currency=" + currency +
                 '}';
-    }
-
-    private boolean ensureCurrencyIsValid(final String currency) {
-        try {
-            return Monetary.getCurrency(currency) != null;
-        } catch (final Exception e) {
-            return Boolean.FALSE;
-        }
     }
 }
