@@ -1,20 +1,19 @@
 package es.urjc.cloudapps.insurancecompany.incidences.domain;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.springframework.util.Assert;
+import java.util.Objects;
 
 public class CoverageIncidence {
 
     private final CoverageIncidenceId id;
 
     public CoverageIncidence(final CoverageIncidenceId id) {
-
-        // -> Use non-framework utils to ensure domain properties
-
-        Assert.isTrue(id != null, "Incidence id must not be null");
+        ensureIdIsPresent(id);
 
         this.id = id;
+    }
+
+    private static void ensureIdIsPresent(final CoverageIncidenceId id) {
+        if (id == null) throw new IllegalArgumentException("Incidence id must not be null");
     }
 
     public CoverageIncidenceId getId() {
@@ -24,20 +23,20 @@ public class CoverageIncidence {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-
         if (!(o instanceof CoverageIncidence)) return false;
-
         CoverageIncidence that = (CoverageIncidence) o;
-
-        return new EqualsBuilder()
-                .append(getId(), that.getId())
-                .isEquals();
+        return getId().equals(that.getId());
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(getId())
-                .toHashCode();
+        return Objects.hash(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "CoverageIncidence{" +
+                "id=" + id +
+                '}';
     }
 }

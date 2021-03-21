@@ -1,7 +1,5 @@
 package es.urjc.cloudapps.insurancecompany.shared.domain;
 
-import org.springframework.util.Assert;
-
 import java.util.UUID;
 
 public class Uuid {
@@ -9,15 +7,22 @@ public class Uuid {
     private final String id;
 
     public Uuid(final String id) {
-
-        Assert.isTrue(id != null && !id.isBlank(), "Uuid must not be null or empty");
-        Assert.isTrue(Uuid.validUuid(id), "Uuid must have the correct format");
+        ensureIdIsPresent(id);
+        ensureIdIsValid(id);
 
         this.id = id;
     }
 
     public Uuid() {
         this.id = UUID.randomUUID().toString();
+    }
+
+    private static void ensureIdIsPresent(final String id) {
+        if (id == null || id.isBlank()) throw new IllegalArgumentException("Uuid must not be null or empty");
+    }
+
+    private static void ensureIdIsValid(final String id) {
+        if (!Uuid.validUuid(id)) throw new IllegalArgumentException("Uuid must have the correct format");
     }
 
     public String getId() {
@@ -31,5 +36,12 @@ public class Uuid {
         } catch (final Exception e) {
             return Boolean.FALSE;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Uuid{" +
+                "id='" + id + '\'' +
+                '}';
     }
 }

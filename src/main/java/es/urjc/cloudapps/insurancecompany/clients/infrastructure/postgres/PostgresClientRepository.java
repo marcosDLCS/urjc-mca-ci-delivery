@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 public class PostgresClientRepository implements ClientRepository {
 
     private final PostgresClientEntityRepository postgresClientEntityRepository;
-    private final ClientMapper clientMapper;
+    private final ClientMapper                   clientMapper;
 
     public PostgresClientRepository(final PostgresClientEntityRepository postgresClientEntityRepository) {
         this.postgresClientEntityRepository = postgresClientEntityRepository;
-        this.clientMapper = Mappers.getMapper(ClientMapper.class);
+        this.clientMapper                   = Mappers.getMapper(ClientMapper.class);
     }
 
     @Override

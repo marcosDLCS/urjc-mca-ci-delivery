@@ -1,7 +1,5 @@
 package es.urjc.cloudapps.insurancecompany.shared.domain;
 
-import org.springframework.util.Assert;
-
 public class Address {
 
     private final String country;
@@ -16,19 +14,32 @@ public class Address {
 
     public Address(final String country, final String city, final String postalCode, final String street,
                    final String number) {
+        ensureCountryIsPresent(country);
+        ensureCityIsPresent(city);
+        ensurePostalCodeIsPresent(postalCode);
+        ensureStreetIsPresent(street);
 
-        // -> Use non-framework utils to ensure domain properties
-
-        Assert.isTrue(country != null && !country.isBlank(), "Country must not be null or empty");
-        Assert.isTrue(city != null && !city.isBlank(), "City must not be null or empty");
-        Assert.isTrue(postalCode != null && !postalCode.isBlank(), "Postal code must not be null or empty");
-        Assert.isTrue(street != null && !street.isBlank(), "Street must not be null or empty");
-
-        this.country = country;
-        this.city = city;
+        this.country    = country;
+        this.city       = city;
         this.postalCode = postalCode;
-        this.street = street;
-        this.number = (number != null && !number.isBlank()) ? "W/0" : number;
+        this.street     = street;
+        this.number     = (number != null && !number.isBlank()) ? "W/0" : number;
+    }
+
+    private static void ensureCountryIsPresent(final String cnt) {
+        if (cnt == null || cnt.isBlank()) throw new IllegalArgumentException("Country must not be null or empty");
+    }
+
+    private static void ensureCityIsPresent(final String city) {
+        if (city == null || city.isBlank()) throw new IllegalArgumentException("City must not be null or empty");
+    }
+
+    private static void ensurePostalCodeIsPresent(final String pc) {
+        if (pc == null || pc.isBlank()) throw new IllegalArgumentException("Postal code must not be null or empty");
+    }
+
+    private static void ensureStreetIsPresent(final String street) {
+        if (street == null || street.isBlank()) throw new IllegalArgumentException("Street must not be null or empty");
     }
 
     public String getCountry() {
@@ -55,5 +66,4 @@ public class Address {
     public String toString() {
         return this.street + ", " + this.number + ". " + this.postalCode + ". " + this.city + ", " + this.country;
     }
-
 }

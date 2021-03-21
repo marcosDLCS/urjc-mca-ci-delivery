@@ -14,17 +14,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class IncidenceTest {
 
-    private IncidenceId validIncidenceId;
-    private InsuranceId validInsuranceId;
+    private IncidenceId       validIncidenceId;
+    private InsuranceId       validInsuranceId;
     private CoverageIncidence validCoverageIncidence;
-    private IncidenceAmount validIncidenceAmount;
+    private IncidenceAmount   validIncidenceAmount;
 
     @BeforeEach
     void setup() {
-        this.validIncidenceId = getValidIncidenceId();
-        this.validInsuranceId = getValidInsuranceId();
+        this.validIncidenceId       = getValidIncidenceId();
+        this.validInsuranceId       = getValidInsuranceId();
         this.validCoverageIncidence = getValidCoverageIncidence();
-        this.validIncidenceAmount = getValidIncidenceAmount();
+        this.validIncidenceAmount   = getValidIncidenceAmount();
     }
 
     @Test

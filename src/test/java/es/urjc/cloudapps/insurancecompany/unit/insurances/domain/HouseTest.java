@@ -15,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class HouseTest {
 
     private HouseRegistry validHouseRegistry;
-    private HouseAddress validHouseAddress;
+    private HouseAddress  validHouseAddress;
 
     @BeforeEach
     void setup() {
         this.validHouseRegistry = getValidHouseRegistry();
-        this.validHouseAddress = getValidHouseAddress();
+        this.validHouseAddress  = getValidHouseAddress();
     }
 
     @Test

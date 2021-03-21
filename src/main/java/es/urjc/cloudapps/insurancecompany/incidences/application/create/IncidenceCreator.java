@@ -5,14 +5,13 @@ import es.urjc.cloudapps.insurancecompany.insurances.domain.Insurance;
 import es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceId;
 import es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 @Service
 public class IncidenceCreator {
 
-    private final IncidenceRepository incidenceRepository;
-    private final InsuranceRepository insuranceRepository;
-    private final CoverageIncidenceRepository coverageIncidenceRepository;
+    private final IncidenceRepository               incidenceRepository;
+    private final InsuranceRepository               insuranceRepository;
+    private final CoverageIncidenceRepository       coverageIncidenceRepository;
     private final IncidenceStatusCalculatorStrategy statusCalculatorStrategy;
 
     public IncidenceCreator(final IncidenceRepository incidenceRepository,
@@ -20,18 +19,15 @@ public class IncidenceCreator {
                             final CoverageIncidenceRepository coverageIncidenceRepository,
                             final IncidenceStatusCalculatorStrategy statusCalculatorStrategy) {
 
-        this.incidenceRepository = incidenceRepository;
-        this.insuranceRepository = insuranceRepository;
+        this.incidenceRepository         = incidenceRepository;
+        this.insuranceRepository         = insuranceRepository;
         this.coverageIncidenceRepository = coverageIncidenceRepository;
-        this.statusCalculatorStrategy = statusCalculatorStrategy;
+        this.statusCalculatorStrategy    = statusCalculatorStrategy;
     }
 
     public void create(final CreateIncidenceCommand command) {
-
-        // -> Use non-framework utils to ensure domain properties
-
-        Assert.isTrue(insuranceExists(command.getInsuranceId()), "Incidence insurance must exist");
-        Assert.isTrue(coverageIncidenceExists(command.getIncidenceType()), "Incidence type must exist");
+        ensureInsuranceExists(command.getInsuranceId());
+        ensureCoverageIncidenceExists(command.getIncidenceType());
 
         final Incidence incidence = new Incidence(
                 new IncidenceId(),
@@ -48,16 +44,14 @@ public class IncidenceCreator {
         incidenceRepository.save(incidence);
     }
 
-    private boolean insuranceExists(final String id) {
-
+    private void ensureInsuranceExists(final String id) {
         final Insurance insurance = insuranceRepository.findOne(new InsuranceId(id));
-        return insurance != null;
+        if (insurance == null) throw new IllegalArgumentException("Incidence insurance must exist");
     }
 
-    private boolean coverageIncidenceExists(final String id) {
-
+    private void ensureCoverageIncidenceExists(final String id) {
         final CoverageIncidence coverageIncidence = coverageIncidenceRepository.findOne(new CoverageIncidenceId(id));
-        return coverageIncidence != null;
+        if (coverageIncidence == null) throw new IllegalArgumentException("Incidence type must exist");
     }
 
 }

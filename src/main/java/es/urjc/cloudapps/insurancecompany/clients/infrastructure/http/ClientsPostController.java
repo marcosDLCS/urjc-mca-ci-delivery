@@ -17,13 +17,13 @@ import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
 @RestController
 public class ClientsPostController {
 
-    private final ClientMapper clientMapper;
+    private final ClientMapper  clientMapper;
     private final ClientCreator clientCreator;
 
 
     public ClientsPostController(final ClientCreator clientCreator) {
         this.clientCreator = clientCreator;
-        this.clientMapper = Mappers.getMapper(ClientMapper.class);
+        this.clientMapper  = Mappers.getMapper(ClientMapper.class);
     }
 
     @ResponseStatus(HttpStatus.ACCEPTED)

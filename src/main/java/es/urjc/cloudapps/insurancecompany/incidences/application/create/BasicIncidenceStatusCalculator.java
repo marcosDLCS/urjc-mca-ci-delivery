@@ -14,7 +14,7 @@ public class BasicIncidenceStatusCalculator implements IncidenceStatusCalculator
 
     private final InsuranceRepository insuranceRepository;
     private final IncidenceRepository incidenceRepository;
-    private final CoverageRepository coverageRepository;
+    private final CoverageRepository  coverageRepository;
 
     public BasicIncidenceStatusCalculator(final InsuranceRepository insuranceRepository,
                                           final IncidenceRepository incidenceRepository,
@@ -22,7 +22,7 @@ public class BasicIncidenceStatusCalculator implements IncidenceStatusCalculator
 
         this.insuranceRepository = insuranceRepository;
         this.incidenceRepository = incidenceRepository;
-        this.coverageRepository = coverageRepository;
+        this.coverageRepository  = coverageRepository;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class BasicIncidenceStatusCalculator implements IncidenceStatusCalculator
     private boolean isNotCovered(final InsuranceId insuranceId,
                                  final CoverageIncidenceId coverageIncidenceId) {
 
-        final Insurance insurance = insuranceRepository.findOne(insuranceId);
+        final Insurance     insurance = insuranceRepository.findOne(insuranceId);
         final Set<Coverage> coverages = insurance.getCoverages();
 
         for (Coverage c : coverages) {

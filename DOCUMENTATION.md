@@ -4,11 +4,11 @@
 
 - [Proyecto](#proyecto)
 - [Modelo de desarrollo](#modelo-de-desarrollo)
-  - [Modo de trabajo paso a paso](#modo-de-trabajo-paso-a-paso)
+    - [Modo de trabajo paso a paso](#modo-de-trabajo-paso-a-paso)
 - [Workflows](#workflows)
-  - [Pull request](#pull-request)
-  - [Release](#release)
-  - [Nightly](#nightly)
+    - [Pull request](#pull-request)
+    - [Release](#release)
+    - [Nightly](#nightly)
 
 ## Proyecto
 
@@ -24,14 +24,18 @@ Un ejemplo de los paquetes creados:
 
 ## Modelo de desarrollo
 
-En este proyecto se asume un modelo de *branching* que se basa en **TBD *(Trunk Based Development)*** en el que los desarrollos de las diferentes características o *features* se realizan en pequeñas ramas con origen en máster que se integran a través del *pull requests*
+En este proyecto se asume un modelo de *branching* que se basa en **TBD *(Trunk Based Development)*** en el que los
+desarrollos de las diferentes características o *features* se realizan en pequeñas ramas con origen en máster que se
+integran a través del *pull requests*
 
 La rama *master* se ha protegido con las siguientes políticas:
 
-- Paso de los *checks* que incluyen haber superado con éxito la ejecución del *workflow* ***pull-request.yml*** cuyo *job* es ***pull_request_build_analysis***
+- Paso de los *checks* que incluyen haber superado con éxito la ejecución del *workflow* ***pull-request.yml*** cuyo *
+  job* es ***pull_request_build_analysis***
 - Se deshabilitan los *force push* a la rama *master*
 - Se deshabilitan los borrados en la rama *master*
-- **[NO ACTIVADO]:** Revisión de la *pull request* por al menos 1 persona antes de cualquier posibilidad de *merge*. Sería recomendable tenerlo activado pero al ser una práctica de una única persona no se ha considerado viable
+- **[NO ACTIVADO]:** Revisión de la *pull request* por al menos 1 persona antes de cualquier posibilidad de *merge*.
+  Sería recomendable tenerlo activado pero al ser una práctica de una única persona no se ha considerado viable
 
 Otras configuraciones interesantes del repositorio son:
 
@@ -41,10 +45,14 @@ Otras configuraciones interesantes del repositorio son:
 ### Modo de trabajo paso a paso
 
 1. Para comenzar una nueva *feature* el desarrollador abre una rama con origen en *master*
-2. Una vez terminado el desarrollo el desarrollador crea una *pull request*. Ese paso debe superar los *checks* del *workflow* de *pull request*, las métricas de SonarCloud y otras dos métricas de DeepCode y Codefactor que sus respectivos *bots* se encargan de orquestar
+2. Una vez terminado el desarrollo el desarrollador crea una *pull request*. Ese paso debe superar los *checks* del *
+   workflow* de *pull request*, las métricas de SonarCloud y otras dos métricas de DeepCode y Codefactor que sus
+   respectivos *bots* se encargan de orquestar
 3. Una vez aceptada la *pull request* ésta se integra mediate un *squash merge*
 4. Por otro lado cada noche a las 3AM se lanza el *workflow* correspondiente a la *nightly*
-5. Para finalizar, en el caso de querer hacer una *release*, el administrador del repo acudiría por ejemplo a la interfaz de GitHub para la creación de la propia *release* haciendo *push* del *tag* de versión seleccionado y añadiendo una descripción. En el momento de publicarse dicha *release* el *workflow* correspondiente se lanzaría
+5. Para finalizar, en el caso de querer hacer una *release*, el administrador del repo acudiría por ejemplo a la
+   interfaz de GitHub para la creación de la propia *release* haciendo *push* del *tag* de versión seleccionado y
+   añadiendo una descripción. En el momento de publicarse dicha *release* el *workflow* correspondiente se lanzaría
 
 ## Workflows
 
@@ -58,13 +66,14 @@ En el *workflow* de ***pull-request*** se realizan las siguientes acciones:
 - Paso de tests unitarios y *slice tests*
 - Publicación en salida del *job* de los ficheros de cobertura de JaCoCo (exec y XML)
 - Paso de análisis estático con Sonar
-- Tareas automáticas de Github Actions *post-workflow* 
+- Tareas automáticas de Github Actions *post-workflow*
 
 <p align="center">
   <img width="300" src="resources/img/pr_workflow.png">
 </p>
 
-De manera añadida se han configurado los *bots* de [DeepCode.ai](https://www.deepcode.ai/) y [CodeFactor](https://www.codefactor.io/) para que se ejecuten siempre en cada *pull request*
+De manera añadida se han configurado los *bots* de [DeepCode.ai](https://www.deepcode.ai/)
+y [CodeFactor](https://www.codefactor.io/) para que se ejecuten siempre en cada *pull request*
 
 <p align="center">
   <img width="400" src="resources/img/pr_checks.png">

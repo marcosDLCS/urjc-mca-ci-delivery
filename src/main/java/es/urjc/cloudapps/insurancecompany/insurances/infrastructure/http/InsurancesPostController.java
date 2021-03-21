@@ -17,13 +17,13 @@ import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
 @RestController
 public class InsurancesPostController {
 
-    private final InsuranceMapper insuranceMapper;
+    private final InsuranceMapper  insuranceMapper;
     private final InsuranceCreator insuranceCreator;
 
 
     public InsurancesPostController(final InsuranceCreator insuranceCreator) {
         this.insuranceCreator = insuranceCreator;
-        this.insuranceMapper = Mappers.getMapper(InsuranceMapper.class);
+        this.insuranceMapper  = Mappers.getMapper(InsuranceMapper.class);
     }
 
     @ResponseStatus(HttpStatus.ACCEPTED)
