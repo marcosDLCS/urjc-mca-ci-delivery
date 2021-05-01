@@ -22,7 +22,7 @@
         <springdoc-openapi.version>1.5.5</springdoc-openapi.version>
         <testcontainers.version>1.15.2</testcontainers.version>
         <pitest.version>1.6.4</pitest.version>
-        <pitest-junit5.version>0.12</pitest-junit5.version>
+        <pitest-junit5.version>0.14</pitest-junit5.version>
         <owasp.version>6.1.2</owasp.version>
         <jacoco.version>0.8.6</jacoco.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
