@@ -32,7 +32,7 @@ jobs:
         run: |
           PROJECT_VERSION=$(mvn -B org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
           mvn -B versions:set -DnewVersion=$PROJECT_VERSION-RELEASE
-          mvn -B clean package -f pom.xml
+          mvn -B clean verify -f pom.xml
 
       - name: Save Jacoco Exec
         uses: actions/upload-artifact@v2
