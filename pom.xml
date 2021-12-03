@@ -19,7 +19,7 @@
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2020.0.4</spring-cloud.version>
-        <springdoc-openapi.version>1.5.12</springdoc-openapi.version>
+        <springdoc-openapi.version>1.5.13</springdoc-openapi.version>
         <testcontainers.version>1.16.2</testcontainers.version>
         <pitest.version>1.7.2</pitest.version>
         <pitest-junit5.version>0.15</pitest-junit5.version>
