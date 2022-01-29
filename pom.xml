@@ -23,7 +23,7 @@
         <testcontainers.version>1.16.2</testcontainers.version>
         <pitest.version>1.7.3</pitest.version>
         <pitest-junit5.version>0.15</pitest-junit5.version>
-        <owasp.version>6.5.0</owasp.version>
+        <owasp.version>6.5.3</owasp.version>
         <jacoco.version>0.8.7</jacoco.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <java-money.version>1.4.2</java-money.version>
