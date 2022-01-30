@@ -75,6 +75,9 @@ jobs:
           path: target/pit-reports/**/mutations.xml
 
       - name: Publish package to Github Packages
-        run: mvn -B deploy -DskipTests
+        run: |
+          DPL_PROJECT_VERSION=$(mvn -B org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
+          DPL_NIGHTLY_VERSION=$(echo $GITHUB_SHA | cut -c1-8)
+          mvn -B deploy -DskipTests -Dversion=$DPL_PROJECT_VERSION.$DPL_NIGHTLY_VERSION-SNAPSHOT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
