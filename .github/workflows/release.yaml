@@ -57,7 +57,10 @@ jobs:
           -Dsonar.java.coveragePlugin=jacoco \
           -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
-      - name: Publish package to Github Packages
-        run: mvn -B deploy -DskipTests
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Publish package to Github Packages
+#        run: |
+#          DPL_PROJECT_VERSION=$(mvn -B org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
+#          DPL_RELEASE_VERSION=$(echo $GITHUB_SHA | cut -c1-8)
+#          mvn -B deploy -DskipTests -Dversion=$DPL_PROJECT_VERSION.$DPL_RELEASE_VERSION-RELEASE
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
