@@ -24,7 +24,7 @@
         <pitest.version>1.9.0</pitest.version>
         <pitest-junit5.version>1.0.0</pitest-junit5.version>
         <owasp.version>7.1.1</owasp.version>
-        <jacoco.version>0.8.7</jacoco.version>
+        <jacoco.version>0.8.8</jacoco.version>
         <mapstruct.version>1.5.2.Final</mapstruct.version>
         <java-money.version>1.4.2</java-money.version>
     </properties>
