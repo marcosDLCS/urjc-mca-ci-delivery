@@ -18,15 +18,17 @@
 
     <properties>
         <java.version>17</java.version>
+        <!--  -->
+        <apache-commons-lang.version>3.12.0</apache-commons-lang.version>
+        <jacoco.version>0.8.8</jacoco.version>
+        <java-money.version>1.4.2</java-money.version>
+        <mapstruct.version>1.5.2.Final</mapstruct.version>
+        <owasp.version>7.1.1</owasp.version>
+        <pitest-junit5.version>1.0.0</pitest-junit5.version>
+        <pitest.version>1.9.0</pitest.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <springdoc-openapi.version>1.6.9</springdoc-openapi.version>
-        <testcontainers.version>1.16.3</testcontainers.version>
-        <pitest.version>1.9.0</pitest.version>
-        <pitest-junit5.version>1.0.0</pitest-junit5.version>
-        <owasp.version>7.1.1</owasp.version>
-        <jacoco.version>0.8.8</jacoco.version>
-        <mapstruct.version>1.5.2.Final</mapstruct.version>
-        <java-money.version>1.4.2</java-money.version>
+        <testcontainers.version>1.17.3</testcontainers.version>
     </properties>
 
     <dependencyManagement>
@@ -116,6 +118,12 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${springdoc-openapi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache-commons-lang.version}</version>
         </dependency>
 
         <!-- Test -->
