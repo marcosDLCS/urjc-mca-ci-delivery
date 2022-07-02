@@ -5,7 +5,7 @@ import es.urjc.cloudapps.insurancecompany.incidences.domain.IncidenceType;
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDto;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.HouseDTO;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDto;
-import org.testcontainers.shaded.org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.math.BigDecimal;
 import java.util.Set;
