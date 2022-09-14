@@ -46,15 +46,18 @@ jobs:
           path: target/site/jacoco/jacoco.xml
 
       - name: SonarCloud Scan
-        run: |
-          mvn -B -f pom.xml sonar:sonar \
-          -Dsonar.projectKey='marcosDLCS_urjc_mca_ci_delivery' \
-          -Dsonar.projectName='URJC MCA CI-DELIVERY' \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.organization=marcosdlcs \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          -Dsonar.java.coveragePlugin=jacoco \
-          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey='marcosDLCS_urjc_mca_ci_delivery'
+            -Dsonar.projectName='URJC MCA CI-DELIVERY'
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.organization=marcosdlcs
+            -Dsonar.java.coveragePlugin=jacoco \
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
       - name: OWASP Dependency Check
         run: mvn -B dependency-check:check -f pom.xml
