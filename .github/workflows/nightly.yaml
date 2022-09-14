@@ -50,7 +50,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          ./mvnw -B verify sonar:sonar \
+          mvn -B verify sonar:sonar \
           -Dsonar.projectKey='marcosDLCS_urjc_mca_ci_delivery' \
           -Dsonar.projectName='URJC MCA CI-DELIVERY' \
           -Dsonar.host.url=https://sonarcloud.io \
