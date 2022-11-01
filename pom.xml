@@ -28,7 +28,7 @@
         <pitest.version>1.9.5</pitest.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <springdoc-openapi.version>1.6.11</springdoc-openapi.version>
-        <testcontainers.version>1.17.3</testcontainers.version>
+        <testcontainers.version>1.17.5</testcontainers.version>
     </properties>
 
     <dependencyManagement>
