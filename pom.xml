@@ -22,7 +22,7 @@
         <apache-commons-lang.version>3.12.0</apache-commons-lang.version>
         <jacoco.version>0.8.8</jacoco.version>
         <java-money.version>1.4.2</java-money.version>
-        <mapstruct.version>1.5.2.Final</mapstruct.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
         <owasp.version>7.1.2</owasp.version>
         <pitest-junit5.version>1.0.0</pitest-junit5.version>
         <pitest.version>1.9.5</pitest.version>
