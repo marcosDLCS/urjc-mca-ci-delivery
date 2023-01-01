@@ -23,7 +23,7 @@
         <jacoco.version>0.8.8</jacoco.version>
         <java-money.version>1.4.2</java-money.version>
         <mapstruct.version>1.5.2.Final</mapstruct.version>
-        <owasp.version>7.1.2</owasp.version>
+        <owasp.version>7.4.3</owasp.version>
         <pitest-junit5.version>1.0.0</pitest-junit5.version>
         <pitest.version>1.9.5</pitest.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
