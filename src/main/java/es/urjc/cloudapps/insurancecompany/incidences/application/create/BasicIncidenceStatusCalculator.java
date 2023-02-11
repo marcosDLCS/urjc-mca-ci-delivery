@@ -4,7 +4,7 @@ import es.urjc.cloudapps.insurancecompany.incidences.domain.*;
 import es.urjc.cloudapps.insurancecompany.insurances.domain.*;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;

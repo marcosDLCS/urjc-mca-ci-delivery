@@ -2,7 +2,7 @@ package es.urjc.cloudapps.insurancecompany.insurances.infrastructure.postgres;
 
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.postgres.CoverageIncidenceEntity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
