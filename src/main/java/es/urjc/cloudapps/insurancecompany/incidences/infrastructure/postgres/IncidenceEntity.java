@@ -2,7 +2,7 @@ package es.urjc.cloudapps.insurancecompany.incidences.infrastructure.postgres;
 
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.postgres.InsuranceEntity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

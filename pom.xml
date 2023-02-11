@@ -6,29 +6,29 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.3</version>
+        <version>3.0.2</version>
         <relativePath/>
     </parent>
 
     <groupId>es.urjc.cloudapps</groupId>
     <artifactId>insurance-company</artifactId>
-    <version>12.0.0</version>
+    <version>13.0.0</version>
     <name>insurance-company</name>
     <description>Práctica. Integración y entrega continua. URJC Máster Cloud Apps</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>19</java.version>
         <!--  -->
         <apache-commons-lang.version>3.12.0</apache-commons-lang.version>
         <jacoco.version>0.8.8</jacoco.version>
         <java-money.version>1.4.2</java-money.version>
-        <mapstruct.version>1.5.2.Final</mapstruct.version>
-        <owasp.version>7.1.2</owasp.version>
-        <pitest-junit5.version>1.0.0</pitest-junit5.version>
-        <pitest.version>1.9.5</pitest.version>
-        <spring-cloud.version>2021.0.3</spring-cloud.version>
-        <springdoc-openapi.version>1.6.11</springdoc-openapi.version>
-        <testcontainers.version>1.17.3</testcontainers.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
+        <owasp.version>8.0.2</owasp.version>
+        <pitest-junit5.version>1.1.2</pitest-junit5.version>
+        <pitest.version>1.11.0</pitest.version>
+        <spring-cloud.version>2022.0.1</spring-cloud.version>
+        <springdoc-openapi.version>1.6.14</springdoc-openapi.version>
+        <testcontainers.version>1.17.6</testcontainers.version>
     </properties>
 
     <dependencyManagement>
@@ -73,8 +73,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-tracing-bridge-brave</artifactId>
         </dependency>
 
         <dependency>
@@ -188,8 +188,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>19</source>
+                    <target>19</target>
                 </configuration>
             </plugin>
 

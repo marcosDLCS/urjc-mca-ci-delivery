@@ -2,10 +2,10 @@ package es.urjc.cloudapps.insurancecompany.incidences.infrastructure.postgres;
 
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.postgres.CoverageEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import java.util.Set;
 
 @Entity

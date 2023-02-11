@@ -12,6 +12,7 @@ import org.mapstruct.Mapping;
 
 import javax.money.CurrencyUnit;
 
+
 @Mapper
 public interface IncidenceMapper {
 

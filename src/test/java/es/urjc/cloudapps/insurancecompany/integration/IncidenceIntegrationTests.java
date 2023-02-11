@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.shaded.com.fasterxml.jackson.core.JsonProcessingException;
@@ -101,7 +101,7 @@ class IncidenceIntegrationTests {
                 .statusCode(202);
 
         final ClientDto clientFromDb = Arrays.asList(
-                get("/clients").then().statusCode(200).and().extract().body().as(ClientDto[].class))
+                        get("/clients").then().statusCode(200).and().extract().body().as(ClientDto[].class))
                 .get(0);
 
         with().body(objectMapper.writeValueAsString(getRandomInsurance(clientFromDb.getId())))
@@ -112,7 +112,7 @@ class IncidenceIntegrationTests {
                 .statusCode(202);
 
         return Arrays.asList(
-                get("/insurances").then().statusCode(200).and().extract().body().as(InsuranceDto[].class))
+                        get("/insurances").then().statusCode(200).and().extract().body().as(InsuranceDto[].class))
                 .get(0);
     }
 
