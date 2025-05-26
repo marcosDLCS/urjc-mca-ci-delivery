@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.2</version>
+        <version>3.5.0-M1</version>
         <relativePath/>
     </parent>
 
@@ -17,18 +17,18 @@
     <description>Práctica. Integración y entrega continua. URJC Máster Cloud Apps</description>
 
     <properties>
-        <java.version>19</java.version>
+        <java.version>24</java.version>
         <!--  -->
-        <apache-commons-lang.version>3.14.0</apache-commons-lang.version>
-        <jacoco.version>0.8.11</jacoco.version>
-        <java-money.version>1.4.3</java-money.version>
-        <mapstruct.version>1.5.5.Final</mapstruct.version>
-        <owasp.version>9.0.9</owasp.version>
-        <pitest-junit5.version>1.2.1</pitest-junit5.version>
-        <pitest.version>1.15.6</pitest.version>
-        <spring-cloud.version>2023.0.0</spring-cloud.version>
-        <springdoc-openapi.version>2.3.0</springdoc-openapi.version>
-        <testcontainers.version>1.19.3</testcontainers.version>
+        <apache-commons-lang.version>3.17.0</apache-commons-lang.version>
+        <jacoco.version>0.8.13</jacoco.version>
+        <java-money.version>1.4.5</java-money.version>
+        <mapstruct.version>1.6.3</mapstruct.version>
+        <owasp.version>12.1.1</owasp.version>
+        <pitest-junit5.version>1.2.2</pitest-junit5.version>
+        <pitest.version>1.19.1</pitest.version>
+        <spring-cloud.version>2025.0.0-RC1</spring-cloud.version>
+        <springdoc-openapi.version>2.8.6</springdoc-openapi.version>
+        <testcontainers.version>1.21.0</testcontainers.version>
     </properties>
 
     <dependencyManagement>
@@ -182,8 +182,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>21</source>
-                    <target>21</target>
+                    <source>24</source>
+                    <target>24</target>
                 </configuration>
             </plugin>
 
@@ -268,6 +268,14 @@
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </pluginRepository>
     </pluginRepositories>
 
