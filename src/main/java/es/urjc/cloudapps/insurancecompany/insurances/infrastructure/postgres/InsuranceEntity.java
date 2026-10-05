@@ -4,14 +4,10 @@ import es.urjc.cloudapps.insurancecompany.clients.infrastructure.postgres.Client
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.postgres.IncidenceEntity;
 import jakarta.persistence.*;
 import java.util.Set;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "insurances")
-@Getter
-@Setter
 public class InsuranceEntity {
 
   @Id private String id;

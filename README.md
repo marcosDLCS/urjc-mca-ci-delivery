@@ -4,7 +4,6 @@
 
 ### Práctica. Configuración de un pipeline/workflow de integración continua<!-- omit in toc -->
 
-[![CodeFactor](https://www.codefactor.io/repository/github/marcosdlcs/urjc-mca-ci-delivery/badge/master)](https://www.codefactor.io/repository/github/marcosdlcs/urjc-mca-ci-delivery/overview/master)
 ![PR: Build, Test & Analysis](https://github.com/marcosDLCS/urjc_mca_ci_delivery/workflows/PR:%20Build,%20Test%20&%20Analysis/badge.svg)
 
 #### Tabla de contenidos<!-- omit in toc -->
@@ -94,7 +93,6 @@ La practica está realizada con las siguientes tecnologías:
 
 - Spring Boot y Spring Data JPA
 - PostgreSQL
-- Lombok
 - Mapstruct
 - Java Money Moneta
 
