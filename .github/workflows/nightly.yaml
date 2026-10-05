@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
+      - name: Set up JDK 25
+        uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
-          java-version: 21
+          java-version: 25
 
       - name: Cache dependencies
         uses: actions/cache@v4
@@ -29,7 +29,7 @@ jobs:
 
       - name: Build, run all tests and package artifact with Maven
         run: |
-          PROJECT_VERSION=$(mvn -B org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
+          PROJECT_VERSION=$(mvn -B org.apache.maven.plugins:maven-help-plugin:3.5.2:evaluate -Dexpression=project.version -q -DforceStdout)
           NIGHTLY_VERSION=$(echo $GITHUB_SHA | cut -c1-8)
           mvn -B versions:set -DnewVersion=$PROJECT_VERSION.$NIGHTLY_VERSION-SNAPSHOT
           mvn -B clean verify -f pom.xml
