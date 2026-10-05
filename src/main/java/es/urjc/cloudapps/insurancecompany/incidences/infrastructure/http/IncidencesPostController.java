@@ -1,5 +1,8 @@
 package es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
+
 import es.urjc.cloudapps.insurancecompany.incidences.application.create.CreateIncidenceCommand;
 import es.urjc.cloudapps.insurancecompany.incidences.application.create.IncidenceCreator;
 import es.urjc.cloudapps.insurancecompany.incidences.shared.IncidenceMapper;
@@ -11,26 +14,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
-
 @RestController
 public class IncidencesPostController {
 
-    private final IncidenceMapper  incidenceMapper;
-    private final IncidenceCreator incidenceCreator;
+  private final IncidenceMapper incidenceMapper;
+  private final IncidenceCreator incidenceCreator;
 
-    public IncidencesPostController(final IncidenceCreator incidenceCreator) {
-        this.incidenceCreator = incidenceCreator;
-        this.incidenceMapper  = Mappers.getMapper(IncidenceMapper.class);
-    }
+  public IncidencesPostController(final IncidenceCreator incidenceCreator) {
+    this.incidenceCreator = incidenceCreator;
+    this.incidenceMapper = Mappers.getMapper(IncidenceMapper.class);
+  }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @PostMapping(path = "/incidences", consumes = APPLICATION_JSON_VALUE, produces = TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> newPost(@RequestBody IncidenceDto dto) {
+  @ResponseStatus(HttpStatus.ACCEPTED)
+  @PostMapping(path = "/incidences", consumes = APPLICATION_JSON_VALUE, produces = TEXT_PLAIN_VALUE)
+  public ResponseEntity<String> newPost(@RequestBody IncidenceDto dto) {
 
-        final CreateIncidenceCommand command = incidenceMapper.incidenceDTOtoIncidenceCommand(dto);
-        incidenceCreator.create(command);
-        return new ResponseEntity<>("Incidence created", HttpStatus.ACCEPTED);
-    }
+    final CreateIncidenceCommand command = incidenceMapper.incidenceDTOtoIncidenceCommand(dto);
+    incidenceCreator.create(command);
+    return new ResponseEntity<>("Incidence created", HttpStatus.ACCEPTED);
+  }
 }

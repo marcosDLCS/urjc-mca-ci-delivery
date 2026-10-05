@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface CoverageRepository {
 
-    List<Coverage> findAll();
+  List<Coverage> findAll();
 
-    Coverage findById(final String id);
+  Coverage findById(final String id);
 }

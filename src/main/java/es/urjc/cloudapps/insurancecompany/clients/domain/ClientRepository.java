@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface ClientRepository {
 
-    List<Client> findAll();
+  List<Client> findAll();
 
-    Client findOne(ClientId id);
+  Client findOne(ClientId id);
 
-    void save(Client client);
+  void save(Client client);
 }

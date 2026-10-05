@@ -1,5 +1,8 @@
 package es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
+
 import es.urjc.cloudapps.insurancecompany.insurances.application.create.CreateInsuranceCommand;
 import es.urjc.cloudapps.insurancecompany.insurances.application.create.InsuranceCreator;
 import es.urjc.cloudapps.insurancecompany.insurances.shared.InsuranceMapper;
@@ -11,28 +14,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
-
 @RestController
 public class InsurancesPostController {
 
-    private final InsuranceMapper  insuranceMapper;
-    private final InsuranceCreator insuranceCreator;
+  private final InsuranceMapper insuranceMapper;
+  private final InsuranceCreator insuranceCreator;
 
+  public InsurancesPostController(final InsuranceCreator insuranceCreator) {
+    this.insuranceCreator = insuranceCreator;
+    this.insuranceMapper = Mappers.getMapper(InsuranceMapper.class);
+  }
 
-    public InsurancesPostController(final InsuranceCreator insuranceCreator) {
-        this.insuranceCreator = insuranceCreator;
-        this.insuranceMapper  = Mappers.getMapper(InsuranceMapper.class);
-    }
+  @ResponseStatus(HttpStatus.ACCEPTED)
+  @PostMapping(path = "/insurances", consumes = APPLICATION_JSON_VALUE, produces = TEXT_PLAIN_VALUE)
+  public ResponseEntity<String> newPost(@RequestBody InsuranceDto dto) {
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @PostMapping(path = "/insurances", consumes = APPLICATION_JSON_VALUE, produces = TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> newPost(@RequestBody InsuranceDto dto) {
-
-        final CreateInsuranceCommand command = insuranceMapper.insuranceDtoToInsuranceCommand(dto);
-        insuranceCreator.create(command);
-        return new ResponseEntity<>("Insurance created", HttpStatus.ACCEPTED);
-    }
-
+    final CreateInsuranceCommand command = insuranceMapper.insuranceDtoToInsuranceCommand(dto);
+    insuranceCreator.create(command);
+    return new ResponseEntity<>("Insurance created", HttpStatus.ACCEPTED);
+  }
 }

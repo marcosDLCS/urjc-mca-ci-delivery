@@ -4,8 +4,6 @@
 
 ### Práctica. Configuración de un pipeline/workflow de integración continua<!-- omit in toc -->
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marcosDLCS_urjc_mca_ci_delivery&metric=alert_status)](https://sonarcloud.io/dashboard?id=marcosDLCS_urjc_mca_ci_delivery)
-[![CodeFactor](https://www.codefactor.io/repository/github/marcosdlcs/urjc-mca-ci-delivery/badge/master)](https://www.codefactor.io/repository/github/marcosdlcs/urjc-mca-ci-delivery/overview/master)
 ![PR: Build, Test & Analysis](https://github.com/marcosDLCS/urjc_mca_ci_delivery/workflows/PR:%20Build,%20Test%20&%20Analysis/badge.svg)
 
 #### Tabla de contenidos<!-- omit in toc -->
@@ -42,7 +40,6 @@ El *pipeline* de Integración Continua deberá tener las siguientes característ
 - Se quieren ejecutar en algún momento las siguientes cosas:
   - Tests unitarios, tan a menudo como sea posible
   - Test de sistema, al menos una vez al día
-  - Análisis de calidad y seguridad con Sonar, al menos una vez al día
   - Archivado de artefactos de desarrollo en el propio CI, o en algún sistema externo
   - Empaquetado y publicación de releases estables en algún repositorio de artefactos
   - Se desea disponer todas las noches de una versión de desarrollo actualizada con los cambios del día
@@ -96,7 +93,6 @@ La practica está realizada con las siguientes tecnologías:
 
 - Spring Boot y Spring Data JPA
 - PostgreSQL
-- Lombok
 - Mapstruct
 - Java Money Moneta
 

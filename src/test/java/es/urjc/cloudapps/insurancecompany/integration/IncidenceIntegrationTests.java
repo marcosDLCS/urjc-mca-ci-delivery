@@ -1,14 +1,23 @@
 package es.urjc.cloudapps.insurancecompany.integration;
 
+import static es.urjc.cloudapps.insurancecompany.integration.IntegrationTestDataFactory.*;
+import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.with;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDto;
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.http.InsuranceDto;
 import io.restassured.RestAssured;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
@@ -16,104 +25,112 @@ import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.shaded.com.fasterxml.jackson.core.JsonProcessingException;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
-import static es.urjc.cloudapps.insurancecompany.integration.IntegrationTestDataFactory.*;
-import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.with;
-import static org.assertj.core.api.Assertions.assertThat;
-
-@Slf4j
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class IncidenceIntegrationTests {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+  private static final Logger log = LoggerFactory.getLogger(IncidenceIntegrationTests.class);
 
-    @LocalServerPort
-    private int port;
+  private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @BeforeAll
-    void setUp() {
-        RestAssured.port = this.port;
-    }
+  @LocalServerPort private int port;
 
-    @Test
-    @DisplayName("Incidence flow: create, get all and get by id")
-    void create_incidence_flow() throws JsonProcessingException {
+  @BeforeAll
+  void setUp() {
+    RestAssured.port = this.port;
+  }
 
-        final String INT_TESTS_CLIENTS = "### --> Integration Test: Incidences. {} ";
+  @Test
+  @DisplayName("Incidence flow: create, get all and get by id")
+  void create_incidence_flow() throws JsonProcessingException {
 
-        // Create incidence
-        final IncidenceDto initialIncidence = getRandomIncidence(getInsurance().getId());
+    final String INT_TESTS_CLIENTS = "### --> Integration Test: Incidences. {} ";
 
-        saveIncidence(initialIncidence);
-        log.info(INT_TESTS_CLIENTS, "...Saved incidence");
+    // Create incidence
+    final IncidenceDto initialIncidence = getRandomIncidence(getInsurance().getId());
 
-        // Get all incidences
-        final List<IncidenceDto> response = getAllIncidences();
-        log.info(INT_TESTS_CLIENTS, "...Incidences from DB (find all) ... " + response.toString());
+    saveIncidence(initialIncidence);
+    log.info(INT_TESTS_CLIENTS, "...Saved incidence");
 
-        // Ensure is incidence present in List
-        final Optional<IncidenceDto> incidenceFromResponse = response.stream()
-                .filter(x -> x.getInsuranceId().equals(initialIncidence.getInsuranceId())).findFirst();
+    // Get all incidences
+    final List<IncidenceDto> response = getAllIncidences();
+    log.info(INT_TESTS_CLIENTS, "...Incidences from DB (find all) ... " + response.toString());
 
-        assertThat(incidenceFromResponse).isPresent();
+    // Ensure is incidence present in List
+    final Optional<IncidenceDto> incidenceFromResponse =
+        response.stream()
+            .filter(x -> x.getInsuranceId().equals(initialIncidence.getInsuranceId()))
+            .findFirst();
 
-        // Ensure incidence is found by id
-        final IncidenceDto incidenceFromFindOne = getIncidenceById(incidenceFromResponse.get().getId());
-        log.info(INT_TESTS_CLIENTS, "...Incidence from DB (find one) ... " + incidenceFromFindOne);
+    assertThat(incidenceFromResponse).isPresent();
 
-        assertThat(incidenceFromFindOne).isNotNull();
-        assertThat(incidenceFromFindOne.getInsuranceId()).isEqualTo(initialIncidence.getInsuranceId());
-    }
+    // Ensure incidence is found by id
+    final IncidenceDto incidenceFromFindOne = getIncidenceById(incidenceFromResponse.get().getId());
+    log.info(INT_TESTS_CLIENTS, "...Incidence from DB (find one) ... " + incidenceFromFindOne);
 
+    assertThat(incidenceFromFindOne).isNotNull();
+    assertThat(incidenceFromFindOne.getInsuranceId()).isEqualTo(initialIncidence.getInsuranceId());
+  }
 
-    private IncidenceDto getIncidenceById(final String incidenceId) {
-        return get("/incidences/" + incidenceId).then().statusCode(200).and().extract().body().as(IncidenceDto.class);
-    }
+  private IncidenceDto getIncidenceById(final String incidenceId) {
+    return get("/incidences/" + incidenceId)
+        .then()
+        .statusCode(200)
+        .and()
+        .extract()
+        .body()
+        .as(IncidenceDto.class);
+  }
 
-    private void saveIncidence(final IncidenceDto incidence) throws JsonProcessingException {
-        with().body(objectMapper.writeValueAsString(incidence))
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .when()
-                .request("POST", "/incidences")
+  private void saveIncidence(final IncidenceDto incidence) throws JsonProcessingException {
+    with()
+        .body(objectMapper.writeValueAsString(incidence))
+        .contentType(MediaType.APPLICATION_JSON_VALUE)
+        .when()
+        .request("POST", "/incidences")
+        .then()
+        .statusCode(202);
+  }
+
+  private List<IncidenceDto> getAllIncidences() {
+    return Arrays.asList(
+        get("/incidences").then().statusCode(200).and().extract().body().as(IncidenceDto[].class));
+  }
+
+  private InsuranceDto getInsurance() throws JsonProcessingException {
+
+    final ClientDto randomClient = getRandomClient();
+
+    with()
+        .body(objectMapper.writeValueAsString(randomClient))
+        .contentType(MediaType.APPLICATION_JSON_VALUE)
+        .when()
+        .request("POST", "/clients")
+        .then()
+        .statusCode(202);
+
+    final ClientDto clientFromDb =
+        Arrays.asList(
+                get("/clients").then().statusCode(200).and().extract().body().as(ClientDto[].class))
+            .get(0);
+
+    with()
+        .body(objectMapper.writeValueAsString(getRandomInsurance(clientFromDb.getId())))
+        .contentType(MediaType.APPLICATION_JSON_VALUE)
+        .when()
+        .request("POST", "/insurances")
+        .then()
+        .statusCode(202);
+
+    return Arrays.asList(
+            get("/insurances")
                 .then()
-                .statusCode(202);
-    }
-
-    private List<IncidenceDto> getAllIncidences() {
-        return Arrays.asList(get("/incidences").then().statusCode(200).and().extract().body().as(IncidenceDto[].class));
-    }
-
-    private InsuranceDto getInsurance() throws JsonProcessingException {
-
-        final ClientDto randomClient = getRandomClient();
-
-        with().body(objectMapper.writeValueAsString(randomClient))
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .when()
-                .request("POST", "/clients")
-                .then()
-                .statusCode(202);
-
-        final ClientDto clientFromDb = Arrays.asList(
-                        get("/clients").then().statusCode(200).and().extract().body().as(ClientDto[].class))
-                .get(0);
-
-        with().body(objectMapper.writeValueAsString(getRandomInsurance(clientFromDb.getId())))
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .when()
-                .request("POST", "/insurances")
-                .then()
-                .statusCode(202);
-
-        return Arrays.asList(
-                        get("/insurances").then().statusCode(200).and().extract().body().as(InsuranceDto[].class))
-                .get(0);
-    }
-
+                .statusCode(200)
+                .and()
+                .extract()
+                .body()
+                .as(InsuranceDto[].class))
+        .get(0);
+  }
 }

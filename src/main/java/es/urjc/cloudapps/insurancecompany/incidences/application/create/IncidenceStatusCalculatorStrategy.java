@@ -6,6 +6,5 @@ import es.urjc.cloudapps.insurancecompany.insurances.domain.InsuranceId;
 
 public interface IncidenceStatusCalculatorStrategy {
 
-    IncidenceStatus calculateStatus(InsuranceId insuranceId, CoverageIncidenceId coverageIncidenceId);
-
+  IncidenceStatus calculateStatus(InsuranceId insuranceId, CoverageIncidenceId coverageIncidenceId);
 }
