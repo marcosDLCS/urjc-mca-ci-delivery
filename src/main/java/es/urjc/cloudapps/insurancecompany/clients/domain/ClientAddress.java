@@ -4,9 +4,13 @@ import es.urjc.cloudapps.insurancecompany.shared.domain.Address;
 
 public final class ClientAddress extends Address {
 
-    public ClientAddress(final String country, final String city, final String postalCode, final String street,
-                         final String number) {
+  public ClientAddress(
+      final String country,
+      final String city,
+      final String postalCode,
+      final String street,
+      final String number) {
 
-        super(country, city, postalCode, street, number);
-    }
+    super(country, city, postalCode, street, number);
+  }
 }

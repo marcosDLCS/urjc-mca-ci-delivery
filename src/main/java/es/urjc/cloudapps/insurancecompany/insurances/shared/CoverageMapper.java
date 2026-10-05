@@ -8,11 +8,10 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface CoverageMapper {
 
-    @Mapping(target = "id", source = "coverage.name")
-    CoverageEntity coverageToCoverageEntity(Coverage coverage);
+  @Mapping(target = "id", source = "coverage.name")
+  CoverageEntity coverageToCoverageEntity(Coverage coverage);
 
-    default String coverageToCoverageString(Coverage coverage) {
-        return coverage.getName();
-    }
-
+  default String coverageToCoverageString(Coverage coverage) {
+    return coverage.getName();
+  }
 }

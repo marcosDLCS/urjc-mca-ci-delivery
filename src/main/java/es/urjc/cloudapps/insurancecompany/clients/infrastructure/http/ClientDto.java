@@ -7,19 +7,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ClientDto {
 
-    private String id;
+  private String id;
 
-    private String name;
+  private String name;
 
-    private String surname;
+  private String surname;
 
-    private String country;
+  private String country;
 
-    private String city;
+  private String city;
 
-    private String postalCode;
+  private String postalCode;
 
-    private String street;
+  private String street;
 
-    private String number;
+  private String number;
 }

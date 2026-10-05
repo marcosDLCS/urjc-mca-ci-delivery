@@ -7,19 +7,19 @@ import lombok.Data;
 @Builder(builderClassName = "Builder")
 public class ClientFinderResponse {
 
-    private final String id;
+  private final String id;
 
-    private final String name;
+  private final String name;
 
-    private final String surname;
+  private final String surname;
 
-    private final String country;
+  private final String country;
 
-    private final String city;
+  private final String city;
 
-    private final String postalCode;
+  private final String postalCode;
 
-    private final String street;
+  private final String street;
 
-    private final String number;
+  private final String number;
 }

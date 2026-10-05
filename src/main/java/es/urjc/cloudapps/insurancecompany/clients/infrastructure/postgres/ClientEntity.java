@@ -1,11 +1,10 @@
 package es.urjc.cloudapps.insurancecompany.clients.infrastructure.postgres;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "clients")
@@ -13,20 +12,19 @@ import jakarta.persistence.Table;
 @Setter
 public class ClientEntity {
 
-    @Id
-    private String id;
+  @Id private String id;
 
-    private String name;
+  private String name;
 
-    private String surname;
+  private String surname;
 
-    private String country;
+  private String country;
 
-    private String city;
+  private String city;
 
-    private String postalCode;
+  private String postalCode;
 
-    private String street;
+  private String street;
 
-    private String number;
+  private String number;
 }

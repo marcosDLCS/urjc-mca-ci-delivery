@@ -4,11 +4,11 @@ import es.urjc.cloudapps.insurancecompany.shared.domain.Uuid;
 
 public class IncidenceId extends Uuid {
 
-    public IncidenceId(final String id) {
-        super(id);
-    }
+  public IncidenceId(final String id) {
+    super(id);
+  }
 
-    public IncidenceId() {
-        super();
-    }
+  public IncidenceId() {
+    super();
+  }
 }

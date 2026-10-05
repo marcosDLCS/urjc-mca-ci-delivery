@@ -1,5 +1,10 @@
 package es.urjc.cloudapps.insurancecompany.unit.clients.infrastructure;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.urjc.cloudapps.insurancecompany.clients.application.create.ClientCreator;
 import es.urjc.cloudapps.insurancecompany.clients.infrastructure.http.ClientDto;
@@ -10,45 +15,39 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ClientsPostController.class)
 @ExtendWith(MockitoExtension.class)
 class ClientsPostControllerTest {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+  private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @Autowired
-    private MockMvc mockMvc;
+  @Autowired private MockMvc mockMvc;
 
-    @MockitoBean
-    private ClientCreator clientCreator;
+  @MockitoBean private ClientCreator clientCreator;
 
-    @Test
-    @DisplayName("Ensure status 202 ACCEPTED when invoke client create command")
-    void ensure_controller_should_return_ok_when_receive_client_list() throws Exception {
+  @Test
+  @DisplayName("Ensure status 202 ACCEPTED when invoke client create command")
+  void ensure_controller_should_return_ok_when_receive_client_list() throws Exception {
 
-        final ClientDto clientDTO = new ClientDto();
-        clientDTO.setName("random-name");
-        clientDTO.setSurname("random-surname");
-        clientDTO.setCountry("random-country");
-        clientDTO.setCity("random-city");
-        clientDTO.setPostalCode("random-postsal-code");
-        clientDTO.setNumber("random-number");
+    final ClientDto clientDTO = new ClientDto();
+    clientDTO.setName("random-name");
+    clientDTO.setSurname("random-surname");
+    clientDTO.setCountry("random-country");
+    clientDTO.setCity("random-city");
+    clientDTO.setPostalCode("random-postsal-code");
+    clientDTO.setNumber("random-number");
 
-        doNothing().when(clientCreator).create(any());
+    doNothing().when(clientCreator).create(any());
 
-        this.mockMvc.perform(post("/clients")
+    this.mockMvc
+        .perform(
+            post("/clients")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(clientDTO)))
-                .andExpect(status().isAccepted());
-    }
-
+        .andExpect(status().isAccepted());
+  }
 }

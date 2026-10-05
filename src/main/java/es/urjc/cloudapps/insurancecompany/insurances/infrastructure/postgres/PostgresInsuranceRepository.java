@@ -3,68 +3,69 @@ package es.urjc.cloudapps.insurancecompany.insurances.infrastructure.postgres;
 import es.urjc.cloudapps.insurancecompany.clients.domain.ClientId;
 import es.urjc.cloudapps.insurancecompany.insurances.domain.*;
 import es.urjc.cloudapps.insurancecompany.insurances.shared.InsuranceMapper;
-import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class PostgresInsuranceRepository implements InsuranceRepository {
 
-    private final PostgresInsuranceEntityRepository postgresInsuranceEntityRepository;
-    private final InsuranceMapper                   insuranceMapper;
+  private final PostgresInsuranceEntityRepository postgresInsuranceEntityRepository;
+  private final InsuranceMapper insuranceMapper;
 
-    public PostgresInsuranceRepository(PostgresInsuranceEntityRepository postgresInsuranceEntityRepository) {
-        this.postgresInsuranceEntityRepository = postgresInsuranceEntityRepository;
-        this.insuranceMapper                   = Mappers.getMapper(InsuranceMapper.class);
-    }
+  public PostgresInsuranceRepository(
+      PostgresInsuranceEntityRepository postgresInsuranceEntityRepository) {
+    this.postgresInsuranceEntityRepository = postgresInsuranceEntityRepository;
+    this.insuranceMapper = Mappers.getMapper(InsuranceMapper.class);
+  }
 
-    @Override
-    public List<Insurance> findAll() {
+  @Override
+  public List<Insurance> findAll() {
 
-        final List<InsuranceEntity> insurances = postgresInsuranceEntityRepository.findAll();
-        return insurances.stream().map(this::insuranceEntityToInsurance).collect(Collectors.toList());
-    }
+    final List<InsuranceEntity> insurances = postgresInsuranceEntityRepository.findAll();
+    return insurances.stream().map(this::insuranceEntityToInsurance).collect(Collectors.toList());
+  }
 
-    @Override
-    public Insurance findOne(InsuranceId id) {
+  @Override
+  public Insurance findOne(InsuranceId id) {
 
-        final Optional<InsuranceEntity> insurance = postgresInsuranceEntityRepository.findById(id.getId());
-        return insurance.map(this::insuranceEntityToInsurance).orElse(null);
-    }
+    final Optional<InsuranceEntity> insurance =
+        postgresInsuranceEntityRepository.findById(id.getId());
+    return insurance.map(this::insuranceEntityToInsurance).orElse(null);
+  }
 
-    @Override
-    public Insurance findByHouseRegistry(HouseRegistry registry) {
+  @Override
+  public Insurance findByHouseRegistry(HouseRegistry registry) {
 
-        final Optional<InsuranceEntity> insurance = Optional.ofNullable(
-                postgresInsuranceEntityRepository.findByHouseRegistry(registry.getRegistry()));
-        return insurance.map(this::insuranceEntityToInsurance).orElse(null);
-    }
+    final Optional<InsuranceEntity> insurance =
+        Optional.ofNullable(
+            postgresInsuranceEntityRepository.findByHouseRegistry(registry.getRegistry()));
+    return insurance.map(this::insuranceEntityToInsurance).orElse(null);
+  }
 
-    @Override
-    public void save(Insurance insurance) {
-        postgresInsuranceEntityRepository.save(insuranceMapper.insuranceToInsuranceEntity(insurance));
-    }
+  @Override
+  public void save(Insurance insurance) {
+    postgresInsuranceEntityRepository.save(insuranceMapper.insuranceToInsuranceEntity(insurance));
+  }
 
-    private Insurance insuranceEntityToInsurance(final InsuranceEntity entity) {
+  private Insurance insuranceEntityToInsurance(final InsuranceEntity entity) {
 
-        return new Insurance(
-                new InsuranceId(entity.getId()),
-                new ClientId(entity.getClient().getId()),
-                new House(
-                        new HouseRegistry(entity.getHouseRegistry()),
-                        new HouseAddress(
-                                entity.getHouseCountry(),
-                                entity.getHouseCity(),
-                                entity.getHousePostalCode(),
-                                entity.getHouseStreet(),
-                                entity.getHouseNumber()
-                        )
-                ),
-                entity.getCoverages().stream().map(CoverageEntity::getId)
-                        .map(Coverage::new).collect(Collectors.toSet())
-        );
-    }
+    return new Insurance(
+        new InsuranceId(entity.getId()),
+        new ClientId(entity.getClient().getId()),
+        new House(
+            new HouseRegistry(entity.getHouseRegistry()),
+            new HouseAddress(
+                entity.getHouseCountry(),
+                entity.getHouseCity(),
+                entity.getHousePostalCode(),
+                entity.getHouseStreet(),
+                entity.getHouseNumber())),
+        entity.getCoverages().stream()
+            .map(CoverageEntity::getId)
+            .map(Coverage::new)
+            .collect(Collectors.toSet()));
+  }
 }

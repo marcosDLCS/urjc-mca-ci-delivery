@@ -9,29 +9,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientCreator {
 
-    private final ClientRepository clientRepository;
+  private final ClientRepository clientRepository;
 
-    public ClientCreator(final ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
-    }
+  public ClientCreator(final ClientRepository clientRepository) {
+    this.clientRepository = clientRepository;
+  }
 
-    public void create(final CreateClientCommand command) {
+  public void create(final CreateClientCommand command) {
 
-        final ClientAddress clientAddress = new ClientAddress(
-                command.getCountry(),
-                command.getCity(),
-                command.getPostalCode(),
-                command.getStreet(),
-                command.getNumber()
-        );
+    final ClientAddress clientAddress =
+        new ClientAddress(
+            command.getCountry(),
+            command.getCity(),
+            command.getPostalCode(),
+            command.getStreet(),
+            command.getNumber());
 
-        final Client client = new Client(
-                new ClientId(),
-                command.getName(),
-                command.getSurname(),
-                clientAddress
-        );
+    final Client client =
+        new Client(new ClientId(), command.getName(), command.getSurname(), clientAddress);
 
-        clientRepository.save(client);
-    }
+    clientRepository.save(client);
+  }
 }

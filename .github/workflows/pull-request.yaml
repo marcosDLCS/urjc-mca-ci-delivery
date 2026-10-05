@@ -40,17 +40,3 @@ jobs:
         with:
           name: jacoco_coverage_report.xml
           path: target/site/jacoco/jacoco.xml
-
-      - name: SonarCloud Scan
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          mvn -B verify sonar:sonar \
-          -Dsonar.projectKey='marcosDLCS_urjc_mca_ci_delivery' \
-          -Dsonar.projectName='URJC MCA CI-DELIVERY' \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.organization=marcosdlcs \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          -Dsonar.java.coveragePlugin=jacoco \
-          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml

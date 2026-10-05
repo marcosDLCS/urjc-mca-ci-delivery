@@ -1,12 +1,12 @@
 package es.urjc.cloudapps.insurancecompany.integration;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @ActiveProfiles("test")
@@ -14,10 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class InsuranceCompanyApplicationTests {
 
-    @Test
-    void contextLoads() {
-        log.info("Context loading...");
-        assertThat(Boolean.TRUE).isTrue();
-    }
-
+  @Test
+  void contextLoads() {
+    log.info("Context loading...");
+    assertThat(Boolean.TRUE).isTrue();
+  }
 }

@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface InsuranceRepository {
 
-    List<Insurance> findAll();
+  List<Insurance> findAll();
 
-    Insurance findOne(InsuranceId id);
+  Insurance findOne(InsuranceId id);
 
-    Insurance findByHouseRegistry(HouseRegistry registry);
+  Insurance findByHouseRegistry(HouseRegistry registry);
 
-    void save(Insurance client);
+  void save(Insurance client);
 }

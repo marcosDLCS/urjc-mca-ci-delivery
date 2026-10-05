@@ -1,57 +1,55 @@
 package es.urjc.cloudapps.insurancecompany.unit.incidences.infrastructure;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.urjc.cloudapps.insurancecompany.incidences.application.create.IncidenceCreator;
 import es.urjc.cloudapps.insurancecompany.incidences.domain.IncidenceType;
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidenceDto;
 import es.urjc.cloudapps.insurancecompany.incidences.infrastructure.http.IncidencesPostController;
+import java.math.BigDecimal;
+import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.math.BigDecimal;
-import java.util.UUID;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(IncidencesPostController.class)
 @ExtendWith(MockitoExtension.class)
 class IncidencesPostControllerTest {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+  private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @Autowired
-    private MockMvc mockMvc;
+  @Autowired private MockMvc mockMvc;
 
-    @MockitoBean
-    private IncidenceCreator incidenceCreator;
+  @MockitoBean private IncidenceCreator incidenceCreator;
 
-    @Test
-    @DisplayName("Ensure status 202 ACCEPTED when invoke incidence create command")
-    void ensure_controller_should_return_ok_when_receive_client_list() throws Exception {
+  @Test
+  @DisplayName("Ensure status 202 ACCEPTED when invoke incidence create command")
+  void ensure_controller_should_return_ok_when_receive_client_list() throws Exception {
 
-        final IncidenceDto incidenceDTO = new IncidenceDto();
-        incidenceDTO.setInsuranceId(UUID.randomUUID().toString());
-        incidenceDTO.setIncidenceType(IncidenceType.ACCIDENT.name());
-        incidenceDTO.setDescription("random-description");
-        incidenceDTO.setAmount(BigDecimal.TEN);
-        incidenceDTO.setCurrency("EUR");
+    final IncidenceDto incidenceDTO = new IncidenceDto();
+    incidenceDTO.setInsuranceId(UUID.randomUUID().toString());
+    incidenceDTO.setIncidenceType(IncidenceType.ACCIDENT.name());
+    incidenceDTO.setDescription("random-description");
+    incidenceDTO.setAmount(BigDecimal.TEN);
+    incidenceDTO.setCurrency("EUR");
 
-        doNothing().when(incidenceCreator).create(any());
+    doNothing().when(incidenceCreator).create(any());
 
-        this.mockMvc.perform(post("/incidences")
+    this.mockMvc
+        .perform(
+            post("/incidences")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(incidenceDTO)))
-                .andExpect(status().isAccepted());
-    }
-
+        .andExpect(status().isAccepted());
+  }
 }

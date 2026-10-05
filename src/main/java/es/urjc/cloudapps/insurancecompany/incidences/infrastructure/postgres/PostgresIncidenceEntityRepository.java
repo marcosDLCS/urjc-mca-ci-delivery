@@ -1,12 +1,11 @@
 package es.urjc.cloudapps.insurancecompany.incidences.infrastructure.postgres;
 
 import es.urjc.cloudapps.insurancecompany.insurances.infrastructure.postgres.InsuranceEntity;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 public interface PostgresIncidenceEntityRepository extends JpaRepository<IncidenceEntity, String> {
-    // PostgresIncidenceEntityRepository
+  // PostgresIncidenceEntityRepository
 
-    List<IncidenceEntity> findByInsurance(InsuranceEntity insurance);
+  List<IncidenceEntity> findByInsurance(InsuranceEntity insurance);
 }
